@@ -11,8 +11,9 @@ const SearchAnime = () => {
     event.preventDefault()
     const url = `https://api.consumet.org/anime/gogoanime/${query}?page=${page}`
     const response = await axios.get(url)
-    setAnimeList(response.data)
+    setAnimeList(response.data.results)
   }
+
   console.log(animeList)
 
   return (
@@ -20,12 +21,14 @@ const SearchAnime = () => {
       <form onSubmit={handleSearch}>
         <input
           type='text'
+          className='text-black bg-slate-500'
+          placeholder='test'
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         />
         <button type='submit'>Search</button>
       </form>
-      {/* <AnimeList animeList={animeList} /> */}
+      <AnimeList animeList={animeList} />
     </div>
   )
 }

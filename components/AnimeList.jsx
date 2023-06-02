@@ -7,7 +7,7 @@ const AnimeList = ({ animeList }) => {
       <ul>
         {animeList.map((anime) => (
           <li key={anime.id}>
-            <Link to={`/anime/${anime.id}`}>
+            <Link to={`/anime/gogoanime/info/${anime.id}`}>
               <button>{anime.title}</button>
             </Link>
           </li>

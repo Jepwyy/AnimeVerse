@@ -33,10 +33,9 @@ const AnimePlayer = () => {
 
   return (
     <div>
-      <h1>{animeDetails.title}</h1>
+      <h1 className='text-3xl font-bold underline'>{animeDetails.title}</h1>
       {selectedEpisode && (
         <div>
-          <h2>Selected Episode:</h2>
           <iframe
             src={selectedEpisode}
             title='Anime Episode'
@@ -51,7 +50,7 @@ const AnimePlayer = () => {
           animeDetails.episodes.map((episode) => (
             <li key={episode.id}>
               <button
-                className='text-white'
+                className='text-white bg-blue-600 rounded'
                 onClick={() => handlePlayEpisode(episode.id, 'gogocdn')}
               >
                 {episode.number}

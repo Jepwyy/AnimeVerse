@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const AnimePlayer = () => {
   const { id } = useParams()
@@ -33,14 +34,17 @@ const AnimePlayer = () => {
 
   return (
     <div>
-      <h1 className='text-3xl font-bold underline'>{animeDetails.title}</h1>
+      <Link to={'/'}>
+        <h1 className='text-3xl font-bold underline'>{animeDetails.title}</h1>
+      </Link>
+
       {selectedEpisode && (
         <div>
           <iframe
             src={selectedEpisode}
             title='Anime Episode'
             allowFullScreen
-            className='w-[90%] h-[24rem]'
+            className='w-[90%] h-[12rem] md:h-[31rem]'
           />
         </div>
       )}

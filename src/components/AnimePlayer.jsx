@@ -18,7 +18,7 @@ const AnimePlayer = () => {
   }, [id])
 
   const handlePlayEpisode = async (episodeId, serverName) => {
-    const episodeUrl = `https://api.amvstr.ml/api/v2/stream/${episodeId}`
+    const episodeUrl = `https://omni-flix-482mhev38-jepwyy.vercel.app/api/${episodeId}`
 
     try {
       const videoResponse = await axios.get(episodeUrl, {
@@ -40,8 +40,7 @@ const AnimePlayer = () => {
             src={selectedEpisode}
             title='Anime Episode'
             allowFullScreen
-            width={900}
-            height={500}
+            className='w-[90%] h-[24rem]'
           />
         </div>
       )}

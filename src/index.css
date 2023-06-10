@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Cyberjunkies';
+  src: url('./assets/fonts/Cyberjunkies.otf') format('opentype'),
+    url('./assets/fonts/Cyberjunkies.ttf') format('truetype'),
+    url('./assets/fonts/Cyberjunkies-Italic.otf') format('opentype'),
+    url('./assets/fonts/Cyberjunkies-Italic.ttf') format('truetype');
+}
+
 body {
   margin: 0;
   padding: 0;

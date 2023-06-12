@@ -8,9 +8,9 @@ import SearchBar from './SearchBar'
 const Topbar = () => {
   return (
     <div className='w-full h-16 sticky bg-[#24292F] flex justify-between items-center px-6'>
-      <div className='flex items-center'>
-        <img className='h-6 mr-1' src={logo} alt='logo' />
-        <div className='text-white text-3xl font-cyberjunkies'>
+      <div className='flex items-center w-[60%]'>
+        <img className='h-7 mr-1' src={logo} alt='logo' />
+        <div className='text-white text-4xl font-cyberjunkies'>
           Anime<span className='text-[#03C988]'>Verse</span>
         </div>
         <SearchBar />

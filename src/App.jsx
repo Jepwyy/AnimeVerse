@@ -4,6 +4,9 @@ import SearchAnime from './components/SearchAnime'
 import AnimePlayer from './components/AnimePlayer'
 import AnimeList from './components/AnimeList'
 
+//layout
+import Layout from './layout/Layout'
+
 //pages
 import Home from './pages/Home'
 
@@ -11,9 +14,9 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home />} />
-
-        <Route path='/anime/gogoanime/info/:id' element={<AnimePlayer />} />
+        <Route element={<Layout />}>
+          <Route path='/' element={<Home />} />
+        </Route>
       </Routes>
     </Router>
   )

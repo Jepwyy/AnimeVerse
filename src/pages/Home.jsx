@@ -3,12 +3,7 @@ import React from 'react'
 import Topbar from '../components/Topbar'
 
 const Home = () => {
-  return (
-    <div>
-      <Topbar />
-      Home
-    </div>
-  )
+  return <div>Home</div>
 }
 
 export default Home

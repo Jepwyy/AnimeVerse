@@ -25,7 +25,7 @@ const SearchBar = () => {
               ref={inputRef}
               type='text'
               id='voice-search'
-              className='bg-[#141414] border border-gray-300 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+              className='bg-[#141414] text-white text-sm rounded-t-lg focus:ring-0 block w-full pl-10 p-2.5 outline-none'
               placeholder='Search anime active...'
             />
             <button
@@ -34,8 +34,15 @@ const SearchBar = () => {
             >
               <IoEnterOutline className='w-4 h-4 text-gray-500 hover:text-gray-900' />
             </button>
-            <div className='absolute bottom-[-30px] left-0 right-0 bg-gray-200 text-gray-500 text-sm py-1 px-2.5'>
-              Suggestions: Anime 1, Anime 2, Anime 3
+            <div className='absolute z-20 left-0 right-0 bg-[#141414]  text-white text-sm rounded-b-lg py-1 px-2.5'>
+              Anime
+              <div className='flex'>
+                <img
+                  className='h-20'
+                  src='https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-PEn1CTc93blC.jpg'
+                />
+                <div>Demon Slayer</div>
+              </div>
             </div>
           </div>
         </div>
@@ -47,7 +54,7 @@ const SearchBar = () => {
           <input
             type='text'
             id='voice-search'
-            className='bg-[#141414] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            className='bg-[#141414] text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 outline-none'
             placeholder='Search anime...'
           />
           <button

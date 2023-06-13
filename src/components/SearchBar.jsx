@@ -14,7 +14,7 @@ const SearchBar = () => {
   }, [isActive])
 
   return (
-    <div className='ml-6 w-[60%] relative'>
+    <div className='w-[55%] relative'>
       {isActive ? (
         <div className=''>
           <div className='absulute w-full' onBlur={() => setIsActive(false)}>

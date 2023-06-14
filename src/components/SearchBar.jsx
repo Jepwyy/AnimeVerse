@@ -16,18 +16,24 @@ const SearchBar = () => {
 
   const handleSuggest = async (e) => {
     setQuery(e.target.value)
+  }
 
-    try {
+  const { data, isLoading, isError } = useQuery(
+    ['search-suggest', query],
+    async () => {
       const response = await axios.get(
         `meta/anilist/advanced-search?query=${query}`
       )
-      const data = response.data.results
-      const result = data.slice(0, 5)
-      setResult(result)
-    } catch (error) {
-      console.log(error)
+      return response.data.results
     }
-  }
+  )
+
+  useEffect(() => {
+    if (data) {
+      const filter = data.slice(0, 5)
+      setResult(filter)
+    }
+  }, [data])
 
   const handleBlur = () => {
     setIsActive(false)

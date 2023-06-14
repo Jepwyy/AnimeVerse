@@ -1,11 +1,33 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { useQuery } from 'react-query'
+import axios from '../api/api'
+
+//icons
 import { HiSearch } from 'react-icons/hi'
 import { TbHexagonLetterS } from 'react-icons/tb'
 import { IoEnterOutline } from 'react-icons/io5'
+import { BsFillPlayFill, BsFillStarFill } from 'react-icons/bs'
 
 const SearchBar = () => {
   const [isActive, setIsActive] = useState(false)
   const inputRef = useRef(null)
+  const [query, setQuery] = useState('')
+  const [result, setResult] = useState([])
+
+  const handleSuggest = async (e) => {
+    setQuery(e.target.value)
+
+    try {
+      const response = await axios.get(
+        `meta/anilist/advanced-search?query=${query}`
+      )
+      const data = response.data.results
+      const result = data.slice(0, 5)
+      setResult(result)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
     if (isActive && inputRef.current) {
@@ -17,12 +39,13 @@ const SearchBar = () => {
     <div className='w-[55%] relative'>
       {isActive ? (
         <div className=''>
-          <div className='absulute w-full' onBlur={() => setIsActive(false)}>
+          <div className='absulute w-full' onBlur={() => setIsActive(true)}>
             <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
               <HiSearch className='w-5 h-5 text-gray-500' />
             </div>
             <input
               ref={inputRef}
+              onChange={handleSuggest}
               type='text'
               id='voice-search'
               className='bg-[#141414] text-white text-sm rounded-t-lg focus:ring-0 block w-full pl-10 p-2.5 outline-none'
@@ -34,14 +57,34 @@ const SearchBar = () => {
             >
               <IoEnterOutline className='w-4 h-4 text-gray-500 hover:text-gray-900' />
             </button>
-            <div className='absolute z-20 left-0 right-0 bg-[#141414]  text-white text-sm rounded-b-lg py-1 px-2.5'>
-              Anime
-              <div className='flex'>
-                <img
-                  className='h-20'
-                  src='https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx101922-PEn1CTc93blC.jpg'
-                />
-                <div>Demon Slayer</div>
+            <div className='absolute z-20 left-0 right-0 bg-[#141414]   text-sm rounded-b-lg py-1 '>
+              <div className='text-[#aaaaaa]  ml-2.5 mb-1.5'>
+                <span className='border-b border-[#aaaaaa]'>Anime</span>
+              </div>
+              <div className=''>
+                {result.map((anime) => (
+                  <div key={anime.id} className='flex px-2.5 py-1 '>
+                    <img className='h-20' src={anime.image} />
+                    <div className='text-[#aaaaaa] flex flex-col py-1 pl-2'>
+                      <div className=' text-lg font-normal'>
+                        {anime.title.english}
+                      </div>
+                      <div className='flex items-center gap-2 text-[#515151]'>
+                        <span className='flex items-center '>
+                          <BsFillPlayFill size={18} /> {anime.totalEpisodes}
+                        </span>
+                        <span>&bull;</span>
+                        <span className='flex items-center gap-1'>
+                          <BsFillStarFill /> {anime.rating}
+                        </span>
+                        <span>&bull;</span>
+                        <span className='font-thin'>{anime.type}</span>
+                        <span>&bull;</span>
+                        <span className='font-thin'>{anime.releaseDate}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

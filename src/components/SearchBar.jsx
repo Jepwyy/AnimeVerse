@@ -47,10 +47,10 @@ const SearchBar = () => {
   }, [isActive])
 
   return (
-    <div className='w-[55%] relative'>
+    <div className='w-[55%] relative '>
       {isActive ? (
         <div className=''>
-          <div className='absulute w-full' onBlur={handleBlur}>
+          <div className='w-full ' onBlur={handleBlur}>
             <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
               <HiSearch className='w-5 h-5 text-gray-500' />
             </div>
@@ -69,7 +69,8 @@ const SearchBar = () => {
             >
               <IoEnterOutline className='w-4 h-4 text-gray-500 hover:text-gray-900' />
             </button>
-            <div className='absolute z-20 left-0 right-0 bg-[#141414]   text-sm rounded-b-lg py-1 '>
+            {/* search-suggest */}
+            <div className='absolute left-0 right-0 bg-[#141414] text-sm rounded-b-lg py-1 '>
               <div className='text-[#aaaaaa]  ml-2.5 mb-1.5'>
                 <span className='border-b border-[#aaaaaa]'>Anime</span>
               </div>

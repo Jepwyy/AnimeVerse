@@ -16,3 +16,6 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+.slant-container {
+  transform: skew(14deg);
+}

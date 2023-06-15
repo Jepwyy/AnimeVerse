@@ -1,14 +1,14 @@
 import React from 'react'
 
 import Banner from '../components/Banner'
-import RecentEpisode from '../components/RecentEpisode'
+import RecentEpisodes from '../components/RecentEpisodes'
 import TopList from '../components/TopList'
 
 const Home = () => {
   return (
     <div className=''>
       <div className='px-14 w-full flex flex-row'>
-        <RecentEpisode />
+        <RecentEpisodes />
         <TopList />
       </div>
     </div>

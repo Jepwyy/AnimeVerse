@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TopList = () => {
-  return <div>TopList</div>
+  return <div className=''>TopList</div>
 }
 
 export default TopList

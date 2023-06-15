@@ -13,7 +13,7 @@ import SearchBar from './SearchBar'
 
 const Topbar = () => {
   return (
-    <div className='w-full h-16 sticky bg-[#24292F] flex justify-between items-center px-14'>
+    <div className='w-full h-16 sticky bg-[#24292F] flex justify-between items-center px-14 z-10'>
       <div className='flex items-center w-[70%] gap-8'>
         <div className='flex items-center mr-6'>
           <img className='h-7 mr-1' src={logo} alt='logo' />

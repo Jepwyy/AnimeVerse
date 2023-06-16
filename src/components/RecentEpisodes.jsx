@@ -54,7 +54,10 @@ const RecentEpisodes = () => {
 
       <div className='flex flex-wrap gap-[.81rem]'>
         {episodes.map((anime) => (
-          <div key={anime.id} className='w-[11.4rem] h-[19.7rem] rounded-md'>
+          <div
+            key={anime.episodeId}
+            className='w-[11.4rem] h-[19.7rem] rounded-md'
+          >
             <img className='h-[16rem]' src={anime.image} />
             <div className='bg-[#242424] flex items-center justify-between p-1  leading-none'>
               <div className='flex items-center text-[#fff] gap-[.10rem] text-[.8rem]'>

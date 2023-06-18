@@ -1,11 +1,10 @@
 import { create } from 'zustand'
 
 export const useAnimeInfo = create((set, get) => ({
-  bears: 0,
-  test: 'test',
+  animeId: '',
 
-  setTest: (num) =>
+  setAnimeId: (id) =>
     set(() => ({
-      test: num,
+      animeId: id,
     })),
 }))

@@ -43,7 +43,7 @@ const RecentEpisodes = () => {
           </button>
           <div className='text-[#dddddd]'>{page}</div>
           <button
-            disabled={next}
+            disabled={isLoading ? true : false}
             onClick={() => setPage(page + 1)}
             className='bg-[#03C988] hover:bg-[#03c987e1] text-gray-100 font-semibold py-1 px-4 rounded-md inline-flex items-center '
           >
@@ -52,13 +52,10 @@ const RecentEpisodes = () => {
         </div>
       </div>
 
-      <div className='flex flex-wrap gap-[.81rem]'>
+      <div className='flex flex-wrap gap-[.81rem] h-[100%]'>
         {episodes.map((anime) => (
-          <div
-            key={anime.episodeId}
-            className='w-[11.4rem] h-[19.7rem] rounded-md'
-          >
-            <img className='h-[16rem]' src={anime.image} />
+          <div key={anime.episodeId} className='w-[13.3%] h-[50%] rounded-md '>
+            <img className='h-[82%]' src={anime.image} />
             <div className='bg-[#242424] flex items-center justify-between p-1  leading-none'>
               <div className='flex items-center text-[#fff] gap-[.10rem] text-[.8rem]'>
                 <span className='flex items-center bg-[#03C988] py-[.15rem] px-[.25rem] rounded-l'>

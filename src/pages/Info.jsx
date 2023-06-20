@@ -11,7 +11,7 @@ const Info = () => {
   return (
     <div className='text-white bg-slate-500 h-screen flex  justify-center'>
       <img
-        className='relative w-full h-[100vh] brightness-50'
+        className='relative w-full h-[20%]  brightness-50'
         src='https://s4.anilist.co/file/anilistcdn/media/anime/banner/141249-ssUG44UgGOMK.jpg'
       />
       <div className='absolute '>kasjdhaksjdhaksd</div>
@@ -27,3 +27,7 @@ const Info = () => {
 }
 
 export default Info
+
+//#07bf67
+//#1D1E1F
+//#2A2B2C

@@ -1,18 +1,37 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import SearchAnime from './components/SearchAnime'
 import AnimePlayer from './components/AnimePlayer'
 import AnimeList from './components/AnimeList'
 
-const App = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<SearchAnime />} />
+//layout
+import Layout from './layout/Layout'
 
-        <Route path='/anime/gogoanime/info/:id' element={<AnimePlayer />} />
-      </Routes>
-    </Router>
+//pages
+import Home from './pages/Home'
+import Info from './pages/Info'
+
+const App = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        refetchOnMount: 'always',
+      },
+    },
+  })
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path='/' element={<Home />} />
+            <Route path='/info' element={<Info />} />
+          </Route>
+        </Routes>
+      </Router>
+    </QueryClientProvider>
   )
 }
 

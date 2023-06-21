@@ -1,27 +1,38 @@
 import React from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import axios from '../api/api'
 import { useAnimeInfo } from '../utils/useAnimeInfo'
 
 const Info = () => {
-  const { test, setTest } = useAnimeInfo((state) => state)
-  // console.log(test)
+  const { id } = useParams()
 
-  // const handleButton = () => {
-  //   setTest(11)
-  // }
+  const {
+    data: info,
+    isError,
+    isLoading,
+  } = useQuery(['info', id], () =>
+    axios
+      .get(`meta/anilist/info/${id}?provider=gogoanime`)
+      .then((res) => res.data)
+  )
+  const ep = info?.episodes[info?.episodes.length - 1]
+
   return (
-    <div className='text-white bg-slate-500 h-screen flex  justify-center'>
+    <div className='text-white bg-slate-500 h-screen'>
       <img
-        className='relative w-full h-[20%]  brightness-50'
-        src='https://s4.anilist.co/file/anilistcdn/media/anime/banner/141249-ssUG44UgGOMK.jpg'
+        className='relative w-full h-[20%] lg:h-[23%] brightness-50'
+        src={info?.cover}
       />
-      <div className='absolute '>kasjdhaksjdhaksd</div>
-      {/* <div className='border border-black px-[10%] top-[28%] absolute top flex items-center'>
-        <img
-          className='w-[30%]'
-          src='https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx141249-8tjavEDHmLoT.jpg'
-        />
-        <h1 className=''>Title</h1>
-      </div> */}
+      <div className=' '>
+        <img className='w-[10rem]' src={info?.image} />
+        <h1 className=''>{info?.title.english}</h1>
+      </div>
+      <div>
+        <Link to={`/play/${ep?.id}`}>
+          <button className='bg-black'>Watch</button>
+        </Link>
+      </div>
     </div>
   )
 }

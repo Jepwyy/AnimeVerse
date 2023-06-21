@@ -15,7 +15,7 @@ import SearchBar from './SearchBar'
 const Topbar = () => {
   const [isActive, setIsActive] = useState(false)
   return (
-    <div className='w-full h-16 sticky bg-[#1D1E1F] border border-[#2A2B2C] flex justify-between items-center px-14 z-10'>
+    <div className='w-full h-16 sticky bg-[#1D1E1F] border border-[#2A2B2C] flex justify-between items-center lg:px-14 px-5 z-10'>
       <div className='flex items-center w-[90%] gap-8'>
         <div
           className={` items-center mr-6 ${

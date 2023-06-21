@@ -11,6 +11,7 @@ import Layout from './layout/Layout'
 //pages
 import Home from './pages/Home'
 import Info from './pages/Info'
+import Player from './pages/Player'
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -27,7 +28,8 @@ const App = () => {
         <Routes>
           <Route element={<Layout />}>
             <Route path='/' element={<Home />} />
-            <Route path='/info' element={<Info />} />
+            <Route path='/info/:id' element={<Info />} />
+            <Route path='/play/:ep' element={<Player />} />
           </Route>
         </Routes>
       </Router>

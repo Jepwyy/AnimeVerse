@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { useQuery } from 'react-query'
 import axios from '../api/api'
-
+import { Link } from 'react-router-dom'
 //icons
 import { HiSearch } from 'react-icons/hi'
 import { TbHexagonLetterS } from 'react-icons/tb'
@@ -12,6 +12,7 @@ const SearchBar = ({ isActive, setIsActive }) => {
   const inputRef = useRef(null)
   const [query, setQuery] = useState('')
   const [result, setResult] = useState([])
+  const componentRef = useRef(null)
 
   const handleSuggest = async (e) => {
     setQuery(e.target.value)
@@ -34,10 +35,23 @@ const SearchBar = ({ isActive, setIsActive }) => {
     }
   }, [data])
 
-  const handleBlur = () => {
-    setIsActive(false)
-    setQuery('')
-  }
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        componentRef.current &&
+        !componentRef.current.contains(event.target)
+      ) {
+        setIsActive(false)
+        setQuery('')
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   useEffect(() => {
     if (isActive && inputRef.current) {
@@ -48,8 +62,8 @@ const SearchBar = ({ isActive, setIsActive }) => {
   return (
     <div className='lg:w-[40%] w-[90%] relative '>
       {isActive ? (
-        <div className=''>
-          <div className='w-full ' onBlur={handleBlur}>
+        <div ref={componentRef} className=''>
+          <div className='w-full '>
             <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
               <HiSearch className='w-5 h-5 text-gray-500' />
             </div>
@@ -78,27 +92,31 @@ const SearchBar = ({ isActive, setIsActive }) => {
                   <></>
                 ) : (
                   result.map((anime) => (
-                    <div key={anime.id} className='flex px-2.5 py-1 '>
-                      <img className='h-20' src={anime.image} />
-                      <div className='text-[#aaaaaa] flex flex-col py-1 pl-2'>
-                        <div className=' text-lg font-normal'>
-                          {anime.title.english}
-                        </div>
-                        <div className='flex items-center gap-2 text-[#515151]'>
-                          <span className='flex items-center '>
-                            <BsFillPlayFill size={18} /> {anime.totalEpisodes}
-                          </span>
-                          <span>&bull;</span>
-                          <span className='flex items-center gap-1'>
-                            <BsFillStarFill /> {anime.rating}
-                          </span>
-                          <span>&bull;</span>
-                          <span className='font-thin'>{anime.type}</span>
-                          <span>&bull;</span>
-                          <span className='font-thin'>{anime.releaseDate}</span>
+                    <Link key={anime.id} to={`/info/${anime.id}`}>
+                      <div className='flex px-2.5 py-1 '>
+                        <img className='h-20' src={anime.image} />
+                        <div className='text-[#aaaaaa] flex flex-col py-1 pl-2'>
+                          <div className=' text-lg font-normal'>
+                            {anime.title.english}
+                          </div>
+                          <div className='flex items-center gap-2 text-[#515151]'>
+                            <span className='flex items-center '>
+                              <BsFillPlayFill size={18} /> {anime.totalEpisodes}
+                            </span>
+                            <span>&bull;</span>
+                            <span className='flex items-center gap-1'>
+                              <BsFillStarFill /> {anime.rating}
+                            </span>
+                            <span>&bull;</span>
+                            <span className='font-thin'>{anime.type}</span>
+                            <span>&bull;</span>
+                            <span className='font-thin'>
+                              {anime.releaseDate}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   ))
                 )}
               </div>

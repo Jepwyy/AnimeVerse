@@ -8,8 +8,7 @@ import { TbHexagonLetterS } from 'react-icons/tb'
 import { IoEnterOutline } from 'react-icons/io5'
 import { BsFillPlayFill, BsFillStarFill } from 'react-icons/bs'
 
-const SearchBar = () => {
-  const [isActive, setIsActive] = useState(false)
+const SearchBar = ({ isActive, setIsActive }) => {
   const inputRef = useRef(null)
   const [query, setQuery] = useState('')
   const [result, setResult] = useState([])
@@ -47,7 +46,7 @@ const SearchBar = () => {
   }, [isActive])
 
   return (
-    <div className='w-[55%] relative '>
+    <div className='lg:w-[40%] w-[90%] relative '>
       {isActive ? (
         <div className=''>
           <div className='w-full ' onBlur={handleBlur}>
@@ -107,7 +106,10 @@ const SearchBar = () => {
           </div>
         </div>
       ) : (
-        <div className='relative w-full' onClick={() => setIsActive(true)}>
+        <div
+          className='relative w-full hidden lg:inline'
+          onClick={() => setIsActive(true)}
+        >
           <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
             <HiSearch className='w-5 h-5 text-gray-500' />
           </div>

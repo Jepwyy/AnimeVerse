@@ -28,6 +28,11 @@ const SearchBar = ({ isActive, setIsActive }) => {
     }
   )
 
+  const handleClose = () => {
+    setIsActive(false)
+    setQuery('')
+  }
+
   useEffect(() => {
     if (data) {
       const filter = data.slice(0, 5)
@@ -92,7 +97,11 @@ const SearchBar = ({ isActive, setIsActive }) => {
                   <></>
                 ) : (
                   result.map((anime) => (
-                    <Link key={anime.id} to={`/info/${anime.id}`}>
+                    <Link
+                      key={anime.id}
+                      to={`/info/${anime.id}`}
+                      onClick={handleClose}
+                    >
                       <div className='flex px-2.5 py-1 '>
                         <img className='h-20' src={anime.image} />
                         <div className='text-[#aaaaaa] flex flex-col py-1 pl-2'>

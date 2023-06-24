@@ -9,7 +9,7 @@ const PlayerEpisodes = () => {
       : null
   return (
     <div className='flex flex-wrap gap-2'>
-      {episodes.map((ep) => (
+      {episodes?.map((ep) => (
         <Link to={`/play/${ep?.id}`}>
           <div
             className='text-white border border-[#07bf67] p-1 bg-[#07bf67]'

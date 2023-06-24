@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import axios from '../api/api'
@@ -6,7 +6,7 @@ import { useAnimeInfo } from '../utils/useAnimeInfo'
 
 const Info = () => {
   const { id } = useParams()
-
+  const { animeInfo, setAnimeInfo } = useAnimeInfo((state) => state)
   const {
     data: info,
     isError,
@@ -16,6 +16,15 @@ const Info = () => {
       .get(`meta/anilist/info/${id}?provider=gogoanime`)
       .then((res) => res.data)
   )
+
+  useEffect(() => {
+    if (info) {
+      setAnimeInfo(info)
+    }
+  }, [info, setAnimeInfo])
+
+  console.log(animeInfo[0])
+
   const ep = info?.episodes[info?.episodes.length - 1]
 
   return (

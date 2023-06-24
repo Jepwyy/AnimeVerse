@@ -19,7 +19,6 @@ const RecentEpisodes = () => {
       return response.data
     }
   )
-  console.log(page)
 
   useEffect(() => {
     if (data) {

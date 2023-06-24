@@ -6,36 +6,27 @@ import { useAnimeInfo } from '../utils/useAnimeInfo'
 
 const Info = () => {
   const { id } = useParams()
-  const { animeInfo, setAnimeInfo } = useAnimeInfo((state) => state)
-  const {
-    data: info,
-    isError,
-    isLoading,
-  } = useQuery(['info', id], () =>
-    axios
-      .get(`meta/anilist/info/${id}?provider=gogoanime`)
-      .then((res) => res.data)
-  )
+  const { animeInfo, fetchAnimeInfo } = useAnimeInfo((state) => state)
 
   useEffect(() => {
-    if (info) {
-      setAnimeInfo(info)
-    }
-  }, [info, setAnimeInfo])
+    fetchAnimeInfo(id)
+  }, [id])
 
-  console.log(animeInfo[0])
-
-  const ep = info?.episodes[info?.episodes.length - 1]
+  const ep =
+    animeInfo?.episodes && animeInfo.episodes.length > 0
+      ? animeInfo.episodes[animeInfo.episodes.length - 1]
+      : null
+  console.log(ep)
 
   return (
     <div className='text-white bg-slate-500 h-screen'>
       <img
         className='relative w-full h-[20%] lg:h-[23%] brightness-50'
-        src={info?.cover}
+        src={animeInfo?.cover}
       />
       <div className=' '>
-        <img className='w-[10rem]' src={info?.image} />
-        <h1 className=''>{info?.title.english}</h1>
+        <img className='w-[10rem]' src={animeInfo?.image} />
+        <h1 className=''>{animeInfo?.title?.english}</h1>
       </div>
       <div>
         <Link to={`/play/${ep?.id}`}>

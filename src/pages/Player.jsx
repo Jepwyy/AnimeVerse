@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import ReactPlayer from 'react-player'
+import PlayerEpisodes from '../components/PlayerEpisodes'
+import { useQuery } from 'react-query'
 
 const Player = () => {
   const sources = [
@@ -40,7 +42,9 @@ const Player = () => {
         controls
       />
       <div>
-        <label htmlFor='qualitySelect'>Quality:</label>
+        <label className='text-white' htmlFor='qualitySelect'>
+          Quality:
+        </label>
         <select
           id='qualitySelect'
           value={selectedQuality}
@@ -53,9 +57,8 @@ const Player = () => {
           ))}
         </select>
       </div>
-      <a href={downloadLink} target='_blank' rel='noopener noreferrer'>
-        Download
-      </a>
+
+      <PlayerEpisodes />
     </div>
   )
 }

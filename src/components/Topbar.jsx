@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import { Link } from 'react-router-dom'
 //icon
 import { FaRandom } from 'react-icons/fa'
 import { TbMovie } from 'react-icons/tb'
@@ -17,16 +17,18 @@ const Topbar = () => {
   return (
     <div className='w-full h-16 sticky bg-[#1D1E1F] border border-[#2A2B2C] flex justify-between items-center lg:px-14 px-5 z-10'>
       <div className='flex items-center w-[90%] gap-8'>
-        <div
-          className={` items-center mr-6 ${
-            isActive ? 'hidden' : 'flex'
-          } lg:flex`}
-        >
-          <img className='h-7 mr-1' src={logo} alt='logo' />
-          <div className='text-white text-4xl font-cyberjunkies'>
-            Anime<span className='text-[#07bf67]'>Verse</span>
+        <Link to={`/`}>
+          <div
+            className={` items-center mr-6 ${
+              isActive ? 'hidden' : 'flex'
+            } lg:flex`}
+          >
+            <img className='h-7 mr-1' src={logo} alt='logo' />
+            <div className='text-white text-4xl font-cyberjunkies'>
+              Anime<span className='text-[#07bf67]'>Verse</span>
+            </div>
           </div>
-        </div>
+        </Link>
         <SearchBar isActive={isActive} setIsActive={setIsActive} />
         <div className='text-[#AAAAAA] text-base font-semibold lg:flex hidden items-center gap-1 cursor-pointer hover:text-[#03C988]'>
           <FaRandom size={20} />

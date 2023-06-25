@@ -4,9 +4,16 @@ import PlayerEpisodes from '../components/PlayerEpisodes'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
 import axios from '../api/api'
+import { useAnimeInfo } from '../utils/useAnimeInfo'
 
 const Player = () => {
+  const { animeInfo, fetchAnimeInfo } = useAnimeInfo((state) => state)
   const { ep } = useParams()
+  const { id } = useParams()
+
+  useEffect(() => {
+    fetchAnimeInfo(id)
+  }, [id])
 
   const {
     data: sources,
@@ -59,7 +66,7 @@ const Player = () => {
       ) : (
         <p>Loading sources...</p>
       )}
-      <PlayerEpisodes />
+      <PlayerEpisodes id={id} animeInfo={animeInfo} />
     </div>
   )
 }

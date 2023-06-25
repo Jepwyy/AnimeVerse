@@ -29,7 +29,7 @@ const App = () => {
           <Route element={<Layout />}>
             <Route path='/' element={<Home />} />
             <Route path='/info/:id' element={<Info />} />
-            <Route path='/play/:ep' element={<Player />} />
+            <Route path='/play/:id/:ep' element={<Player />} />
           </Route>
         </Routes>
       </Router>

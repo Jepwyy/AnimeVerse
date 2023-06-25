@@ -29,7 +29,7 @@ const Info = () => {
         <h1 className=''>{animeInfo?.title?.english}</h1>
       </div>
       <div>
-        <Link to={`/play/${ep?.id}`}>
+        <Link to={`/play/${id}/${ep?.id}`}>
           <button className='bg-black'>Watch</button>
         </Link>
       </div>

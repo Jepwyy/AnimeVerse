@@ -1,6 +1,6 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'https://api.consumet.org/',
+  baseURL: 'http://localhost:3000/main/',
   withCredentials: false,
 })

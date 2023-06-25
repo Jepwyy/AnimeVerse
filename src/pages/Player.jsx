@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import ReactPlayer from 'react-player'
+import React, { useState, useEffect, useRef } from 'react'
 import PlayerEpisodes from '../components/PlayerEpisodes'
 import { useQuery } from 'react-query'
 import { useParams } from 'react-router-dom'
@@ -15,57 +14,29 @@ const Player = () => {
     fetchAnimeInfo(id)
   }, [id])
 
-  const {
-    data: sources,
-    isError,
-    isLoading,
-  } = useQuery(['recentEp', ep], async () => {
-    const response = await axios.get(`meta/anilist/watch/${ep}`)
-    return response.data.sources
+  const { data, isError, isLoading } = useQuery(['recentEp', ep], async () => {
+    const response = await axios.get(`stream/${ep}`)
+    return response.data.nspl.main
   })
-
-  const [selectedQuality, setSelectedQuality] = useState('')
-
-  useEffect(() => {
-    if (sources && sources.length > 0) {
-      setSelectedQuality(sources[0].quality)
-    }
-  }, [sources])
-
-  const handleQualityChange = (event) => {
-    setSelectedQuality(event.target.value)
-  }
+  console.log(data)
 
   return (
     <div>
-      {sources && sources.length > 0 ? (
-        <>
-          <ReactPlayer
-            url={
-              sources.find((source) => source.quality === selectedQuality)?.url
-            }
-            controls
-          />
+      <div>
+        {isLoading ? (
+          <>Loading.....</>
+        ) : (
           <div>
-            <label className='text-white' htmlFor='qualitySelect'>
-              Quality:
-            </label>
-            <select
-              id='qualitySelect'
-              value={selectedQuality}
-              onChange={handleQualityChange}
-            >
-              {sources.map((source) => (
-                <option key={source.quality} value={source.quality}>
-                  {source.quality}
-                </option>
-              ))}
-            </select>
+            <iframe
+              src={String(data)}
+              title='Anime Episode'
+              allowFullScreen
+              className='w-[90%] h-[12rem] md:h-[31rem]'
+            />
           </div>
-        </>
-      ) : (
-        <p>Loading sources...</p>
-      )}
+        )}
+      </div>
+
       <PlayerEpisodes id={id} animeInfo={animeInfo} />
     </div>
   )

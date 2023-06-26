@@ -28,7 +28,7 @@ const Player = () => {
         ) : (
           <div>
             <iframe
-              src={String(data)}
+              src={data}
               title='Anime Episode'
               allowFullScreen
               className='w-[90%] h-[12rem] md:h-[31rem]'

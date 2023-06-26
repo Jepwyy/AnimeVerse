@@ -3,6 +3,7 @@ import React from 'react'
 import Banner from '../components/Banner'
 import RecentEpisodes from '../components/RecentEpisodes'
 import TopList from '../components/TopList'
+import Test from '../components/Test'
 
 const Home = () => {
   return (

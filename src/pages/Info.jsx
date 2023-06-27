@@ -16,7 +16,6 @@ const Info = () => {
     animeInfo?.episodes && animeInfo.episodes.length > 0
       ? animeInfo.episodes[animeInfo.episodes.length - 1]
       : null
-  console.log(animeInfo.episodes)
 
   return (
     <div className='text-white bg-slate-500 h-screen'>

@@ -18,7 +18,6 @@ const Player = () => {
     const response = await axios.get(`stream/${ep}`)
     return response.data.nspl.main
   })
-  console.log(data)
 
   return (
     <div className='lg:px-14 px-5 pt-10'>

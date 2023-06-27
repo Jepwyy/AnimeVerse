@@ -1,44 +1,48 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 const PlayerEpisodes = ({ animeInfo, id }) => {
+  const { ep } = useParams()
   const episodes =
     animeInfo?.episodes && animeInfo.episodes.length > 0
       ? animeInfo.episodes
       : null
 
-  // Get the previously clicked episode ID from cookies
-  const [clickedEpisodeId, setClickedEpisodeId] = useState(
-    () => JSON.parse(localStorage.getItem('clickedEpisodeId')) || []
-  )
+  useEffect(() => {
+    const savedEpisodes = localStorage.getItem('ep') || ''
+    const episodesArray = savedEpisodes.split(',')
 
-  const handleClick = (episodeId) => {
-    // Update the clickedEpisodeId state
-    setClickedEpisodeId((prevClickedEpisodes) => [
-      ...prevClickedEpisodes,
-      episodeId,
-    ])
+    if (!episodesArray.includes(ep)) {
+      episodesArray.push(ep)
+      localStorage.setItem('ep', episodesArray.join(','))
+    }
+  }, [ep])
 
-    // Save the clicked episode ID in cookies
-    localStorage.setItem('clickedEpisodeId', JSON.stringify(clickedEpisodeId))
-  }
+  // useEffect(() => {
+  //   const savedEpisodes = localStorage.getItem('ep') || ''
+  //   const episodesArray = savedEpisodes.split(',')
 
-  const isEpisodeClicked = (episodeId) => clickedEpisodeId.includes(episodeId)
+  //   console.log('Saved Episodes:', episodesArray)
+  // }, [])
+  // h-[31.7rem]
 
   return (
-    <div className='flex flex-wrap gap-2'>
-      {episodes?.map((ep) => (
-        <Link to={`/play/${id}/${ep?.id}`} key={ep.id}>
-          <div
-            className={`text-white border border-[#07bf67] p-1 ${
-              isEpisodeClicked(ep.id) ? 'bg-[#0b3e26]' : 'bg-[#07bf67]'
-            }`}
-            onClick={() => handleClick(ep.id)}
-          >
-            {ep.id}
-          </div>
-        </Link>
-      ))}
+    <div className='grid grid-cols-2 px-2 gap-1 gap-y-3 max-h-[31.7rem] overflow-y-auto '>
+      {episodes?.map((episode) => {
+        const isSaved = localStorage.getItem('ep')?.includes(episode.id)
+
+        return (
+          <Link to={`/play/${id}/${episode?.id}`} key={episode.id}>
+            <div
+              className={`text-white  p-1 ${
+                isSaved ? 'bg-[#0c6339]' : 'bg-[#07bf67]'
+              }`}
+            >
+              {episode.id}
+            </div>
+          </Link>
+        )
+      })}
     </div>
   )
 }

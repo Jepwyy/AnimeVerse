@@ -64,7 +64,9 @@ const RecentEpisodes = () => {
                   <MdOutlineStarRate /> 12
                 </span>
               </div>
-              <div className='text-[#aaaaaa] text-[.9rem] font-medium'>TV</div>
+              <div className='text-[#aaaaaa] text-[.9rem] font-medium'>
+                {anime.type}
+              </div>
             </div>
             <div className='text-[1rem] font-normal leading-none text-[#aaaaaa]'>
               <p className='line-clamp-2'>

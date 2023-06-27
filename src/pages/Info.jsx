@@ -1,29 +1,43 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { useQuery } from 'react-query'
+import axios from '../api/api'
 import { useAnimeInfo } from '../utils/useAnimeInfo'
 
 const Info = () => {
-  const { test, setTest } = useAnimeInfo((state) => state)
-  // console.log(test)
+  const { id } = useParams()
+  const { animeInfo, fetchAnimeInfo } = useAnimeInfo((state) => state)
 
-  // const handleButton = () => {
-  //   setTest(11)
-  // }
+  useEffect(() => {
+    fetchAnimeInfo(id)
+  }, [id])
+
+  const ep =
+    animeInfo?.episodes && animeInfo.episodes.length > 0
+      ? animeInfo.episodes[animeInfo.episodes.length - 1]
+      : null
+
   return (
-    <div className='text-white bg-slate-500 h-screen flex  justify-center'>
+    <div className='text-white bg-slate-500 h-screen'>
       <img
-        className='relative w-full h-[100vh] brightness-50'
-        src='https://s4.anilist.co/file/anilistcdn/media/anime/banner/141249-ssUG44UgGOMK.jpg'
+        className='relative w-full h-[20%] lg:h-[23%] brightness-50'
+        src={animeInfo?.cover}
       />
-      <div className='absolute '>kasjdhaksjdhaksd</div>
-      {/* <div className='border border-black px-[10%] top-[28%] absolute top flex items-center'>
-        <img
-          className='w-[30%]'
-          src='https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx141249-8tjavEDHmLoT.jpg'
-        />
-        <h1 className=''>Title</h1>
-      </div> */}
+      <div className=' '>
+        <img className='w-[10rem]' src={animeInfo?.image} />
+        <h1 className=''>{animeInfo?.title?.english}</h1>
+      </div>
+      <div>
+        <Link to={`/play/${id}/${ep?.id}`}>
+          <button className='bg-black'>Watch</button>
+        </Link>
+      </div>
     </div>
   )
 }
 
 export default Info
+
+//#07bf67
+//#1D1E1F
+//#2A2B2C

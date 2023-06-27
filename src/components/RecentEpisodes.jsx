@@ -29,7 +29,7 @@ const RecentEpisodes = () => {
   return (
     <div className='w-[75%]'>
       <div className='flex items-center justify-between my-2'>
-        <div className='text-[#dddddd] font-semibold text-3xl '>
+        <div className='text-[#dddddd] font-semibold lg:text-3xl text-base'>
           Recently Updated
         </div>
         <div className='flex items-center gap-3'>
@@ -53,8 +53,11 @@ const RecentEpisodes = () => {
 
       <div className='flex flex-wrap gap-[.81rem] h-[100%]'>
         {episodes.map((anime) => (
-          <div key={anime.episodeId} className='w-[13.3%] h-[50%] rounded-md '>
-            <img className='h-[82%]' src={anime.image} />
+          <div
+            key={anime.episodeId}
+            className='w-[11.2rem] aspect-[2/3] rounded-md '
+          >
+            <img className=' aspect-[2/3]' src={anime.image} />
             <div className='bg-[#242424] flex items-center justify-between p-1  leading-none'>
               <div className='flex items-center text-[#fff] gap-[.10rem] text-[.8rem]'>
                 <span className='flex items-center bg-[#03C988] py-[.15rem] px-[.25rem] rounded-l'>

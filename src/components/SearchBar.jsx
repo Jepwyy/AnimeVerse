@@ -105,7 +105,7 @@ const SearchBar = ({ isActive, setIsActive }) => {
                       <div className='flex px-2.5 py-1 '>
                         <img className='h-20' src={anime.image} />
                         <div className='text-[#aaaaaa] flex flex-col py-1 pl-2'>
-                          <div className=' text-lg font-normal'>
+                          <div className=' md:text-lg text-base font-normal line-clamp-2'>
                             {anime.title.english}
                           </div>
                           <div className='flex items-center gap-2 text-[#515151]'>

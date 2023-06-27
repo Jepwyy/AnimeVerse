@@ -21,12 +21,12 @@ const Player = () => {
   console.log(data)
 
   return (
-    <div className='px-14 pt-10'>
-      <div className='flex flex-row'>
+    <div className='lg:px-14 px-5 pt-10'>
+      <div className='flex lg:flex-row flex-col'>
         {isLoading ? (
-          <div className='bg-blue-500 w-1/2  aspect-video'>Loading.....</div>
+          <div className='bg-blue-500 lg:w-1/2  aspect-video'>Loading.....</div>
         ) : (
-          <div className='w-1/2'>
+          <div className='lg:w-1/2'>
             <iframe
               src={data}
               title='Anime Episode'
@@ -39,7 +39,7 @@ const Player = () => {
             />
           </div>
         )}
-        <div className='w-1/2 pl-3'>
+        <div className='lg:w-1/2 pl-3 lg:pt-0 pt-3'>
           <PlayerEpisodes id={id} animeInfo={animeInfo} />
         </div>
       </div>

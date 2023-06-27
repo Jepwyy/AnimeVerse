@@ -49,7 +49,7 @@ const Topbar = () => {
           size={25}
           className='text-[#AAAAAA]  text-base font-semibold lg:hidden flex items-center gap-1 cursor-pointer hover:text-[#03C988]'
         />
-        <div className='bg-[#03C988] hover:bg-[#03c987e1] text-gray-100 font-semibold py-1 px-4 rounded-md inline-flex items-center'>
+        <div className='hidden  bg-[#03C988] hover:bg-[#03c987e1] text-gray-100 font-semibold py-1 px-4 rounded-md md:inline-flex items-center'>
           Login
         </div>
       </div>

@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import axios from '../api/api'
 import { MdLocalMovies, MdOutlineStarRate } from 'react-icons/md'
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr'
-
+import { formatRate } from '../utils/useFormats'
 const RecentEpisodes = () => {
   const [page, setPage] = useState(1)
   const [next, setNext] = useState(false)
@@ -27,7 +27,7 @@ const RecentEpisodes = () => {
   }, [data])
 
   return (
-    <div className='md:w-[75%] w-full mb-20'>
+    <div className='lg:w-[75%] w-full mb-20'>
       <div className='flex items-center justify-between my-2'>
         <div className='text-[#dddddd] font-semibold lg:text-3xl text-base'>
           Recently Updated
@@ -62,7 +62,7 @@ const RecentEpisodes = () => {
                 </span>
                 <span className='flex items-center bg-[#8f7003] py-[.15rem] px-[.25rem] rounded-r'>
                   <MdOutlineStarRate />{' '}
-                  {anime.rating == null ? '--' : anime.rating}
+                  {anime.rating == null ? '--' : formatRate(anime.rating)}
                 </span>
               </div>
               <div className='text-[#aaaaaa] md:text-[.9rem] text-[.7rem] font-medium'>

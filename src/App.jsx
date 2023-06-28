@@ -13,6 +13,7 @@ import Home from './pages/Home'
 import Info from './pages/Info'
 import Player from './pages/Player'
 import Filter from './pages/Filter'
+import Result from './pages/Result'
 
 const App = () => {
   const queryClient = new QueryClient({
@@ -31,7 +32,7 @@ const App = () => {
             <Route path='/' element={<Home />} />
             <Route path='/info/:id' element={<Info />} />
             <Route path='/play/:id/:ep' element={<Player />} />
-            <Route path='/filter' element={<Filter />} />
+            <Route path='/result' element={<Result />} />
           </Route>
         </Routes>
       </Router>

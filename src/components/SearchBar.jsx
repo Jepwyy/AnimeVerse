@@ -38,7 +38,7 @@ const SearchBar = ({ isActive, setIsActive }) => {
   }
 
   const handleSubmit = () => {
-    navigate(`/filter`)
+    navigate(`/result`)
     setAdvanceSearch(query)
     setIsActive(false)
     setQuery('')

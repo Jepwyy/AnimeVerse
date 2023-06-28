@@ -7,7 +7,7 @@ import TopList from '../components/TopList'
 const Home = () => {
   return (
     <div className=''>
-      <div className='px-14 w-full flex flex-row'>
+      <div className='md:px-14 px-6 w-full flex md:flex-row flex-col'>
         <RecentEpisodes />
         <TopList />
       </div>

@@ -27,7 +27,7 @@ const RecentEpisodes = () => {
   }, [data])
 
   return (
-    <div className='w-[75%]'>
+    <div className='md:w-[75%] w-full mb-20'>
       <div className='flex items-center justify-between my-2'>
         <div className='text-[#dddddd] font-semibold lg:text-3xl text-base'>
           Recently Updated
@@ -51,27 +51,25 @@ const RecentEpisodes = () => {
         </div>
       </div>
 
-      <div className='flex flex-wrap gap-[.81rem] h-[100%]'>
+      <div className='grid md:grid-cols-7 grid-cols-3 gap-[.81rem]'>
         {episodes.map((anime) => (
-          <div
-            key={anime.episodeId}
-            className='w-[11.2rem] aspect-[2/3] rounded-md '
-          >
+          <div key={anime.episodeId} className='w-[100%]  rounded-md '>
             <img className=' aspect-[2/3]' src={anime.image} />
             <div className='bg-[#242424] flex items-center justify-between p-1  leading-none'>
-              <div className='flex items-center text-[#fff] gap-[.10rem] text-[.8rem]'>
+              <div className='flex items-center text-[#fff] gap-[.10rem] md:text-[.8rem] text-[.7rem]'>
                 <span className='flex items-center bg-[#03C988] py-[.15rem] px-[.25rem] rounded-l'>
-                  <MdLocalMovies /> 12
+                  <MdLocalMovies /> {anime.episodeNumber}
                 </span>
                 <span className='flex items-center bg-[#8f7003] py-[.15rem] px-[.25rem] rounded-r'>
-                  <MdOutlineStarRate /> 12
+                  <MdOutlineStarRate />{' '}
+                  {anime.rating == null ? '--' : anime.rating}
                 </span>
               </div>
-              <div className='text-[#aaaaaa] text-[.9rem] font-medium'>
+              <div className='text-[#aaaaaa] md:text-[.9rem] text-[.7rem] font-medium'>
                 {anime.type}
               </div>
             </div>
-            <div className='text-[1rem] font-normal leading-none text-[#aaaaaa]'>
+            <div className='md:text-[1rem] text-[.9rem] font-normal leading-none text-[#aaaaaa]'>
               <p className='line-clamp-2'>
                 {anime.title.english == null
                   ? anime.title.userPreferred

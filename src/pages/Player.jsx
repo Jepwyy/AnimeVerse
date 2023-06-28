@@ -30,8 +30,6 @@ const Player = () => {
               src={data}
               title='Anime Episode'
               allowFullScreen
-              width=''
-              height=''
               className='bg-blue-500 w-full  aspect-video'
 
               // className='w-[90%] h-[12rem] md:h-[31rem]'

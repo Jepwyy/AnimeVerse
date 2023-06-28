@@ -1,10 +1,10 @@
 import { create } from 'zustand'
 
 export const useTopbar = create((set, get) => ({
-  isActive: '',
+  advanceSearch: '',
 
-  setIsActive: (val) =>
+  setAdvanceSearch: (val) =>
     set(() => ({
-      animeId: val,
+      advanceSearch: val,
     })),
 }))

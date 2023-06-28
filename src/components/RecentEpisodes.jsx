@@ -61,10 +61,11 @@ const RecentEpisodes = () => {
             <div className='bg-[#242424] flex items-center justify-between p-1  leading-none'>
               <div className='flex items-center text-[#fff] gap-[.10rem] text-[.8rem]'>
                 <span className='flex items-center bg-[#03C988] py-[.15rem] px-[.25rem] rounded-l'>
-                  <MdLocalMovies /> 12
+                  <MdLocalMovies /> {anime.episodeNumber}
                 </span>
                 <span className='flex items-center bg-[#8f7003] py-[.15rem] px-[.25rem] rounded-r'>
-                  <MdOutlineStarRate /> 12
+                  <MdOutlineStarRate />{' '}
+                  {anime.rating == null ? '--' : anime.rating}
                 </span>
               </div>
               <div className='text-[#aaaaaa] text-[.9rem] font-medium'>

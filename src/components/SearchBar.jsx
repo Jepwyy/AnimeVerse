@@ -2,17 +2,21 @@ import React, { useState, useRef, useEffect } from 'react'
 import { useQuery } from 'react-query'
 import axios from '../api/api'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 //icons
 import { HiSearch } from 'react-icons/hi'
 import { TbHexagonLetterS } from 'react-icons/tb'
 import { IoEnterOutline } from 'react-icons/io5'
 import { BsFillPlayFill, BsFillStarFill } from 'react-icons/bs'
+import { useTopbar } from '../utils/useTopbar'
 
 const SearchBar = ({ isActive, setIsActive }) => {
+  const { setAdvanceSearch } = useTopbar((state) => state)
   const inputRef = useRef(null)
   const [query, setQuery] = useState('')
   const [result, setResult] = useState([])
   const componentRef = useRef(null)
+  const navigate = useNavigate()
 
   const handleSuggest = async (e) => {
     setQuery(e.target.value)
@@ -29,6 +33,13 @@ const SearchBar = ({ isActive, setIsActive }) => {
   )
 
   const handleClose = () => {
+    setIsActive(false)
+    setQuery('')
+  }
+
+  const handleSubmit = () => {
+    navigate(`/filter`)
+    setAdvanceSearch(query)
     setIsActive(false)
     setQuery('')
   }
@@ -72,21 +83,23 @@ const SearchBar = ({ isActive, setIsActive }) => {
             <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
               <HiSearch className='w-5 h-5 text-gray-500' />
             </div>
-            <input
-              ref={inputRef}
-              onChange={handleSuggest}
-              autoComplete='off'
-              type='text'
-              id='voice-search'
-              className='bg-[#141414] text-white text-sm rounded-t-lg focus:ring-0 block w-full pl-10 p-2.5 outline-none'
-              placeholder='Search anime active...'
-            />
-            <button
-              type='button'
-              className='absolute inset-y-0 right-0 flex items-center pr-3'
-            >
-              <IoEnterOutline className='w-4 h-4 text-gray-500 hover:text-gray-900' />
-            </button>
+            <form onSubmit={handleSubmit}>
+              <input
+                ref={inputRef}
+                onChange={handleSuggest}
+                autoComplete='off'
+                type='text'
+                id='voice-search'
+                className='bg-[#141414] text-white text-sm rounded-t-lg focus:ring-0 block w-full pl-10 p-2.5 outline-none'
+                placeholder='Search anime active...'
+              />
+              <button
+                type='submit'
+                className='absolute inset-y-0 right-0 flex items-center pr-3'
+              >
+                <IoEnterOutline className='w-4 h-4 text-gray-500 hover:text-gray-900' />
+              </button>
+            </form>
             {/* search-suggest */}
             <div className='absolute left-0 right-0 bg-[#141414] text-sm rounded-b-lg py-1 '>
               <div className='text-[#aaaaaa]  ml-2.5 mb-1.5'>

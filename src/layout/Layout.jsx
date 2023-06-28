@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Topbar from '../components/Topbar'
 import { Outlet } from 'react-router-dom'
+import Footer from '../components/Footer'
 
 const Layout = () => {
   return (

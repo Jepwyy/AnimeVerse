@@ -27,7 +27,7 @@ const RecentEpisodes = () => {
   }, [data])
 
   return (
-    <div className='md:w-[75%] w-full mb-20'>
+    <div className='lg:w-[75%] w-full mb-20'>
       <div className='flex items-center justify-between my-2'>
         <div className='text-[#dddddd] font-semibold lg:text-3xl text-base'>
           Recently Updated

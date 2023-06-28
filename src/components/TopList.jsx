@@ -25,7 +25,7 @@ const TopList = () => {
     <div className='w-[25%]'>
       <div className='flex justify-between'>
         <div className='text-[#dddddd] font-semibold lg:text-1xl text-base'>
-          Top Anime
+          Trending Anime
         </div>
       </div>
       <div>

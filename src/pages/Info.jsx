@@ -8,15 +8,23 @@ const Info = () => {
   const { id } = useParams()
   const { animeInfo, fetchAnimeInfo } = useAnimeInfo((state) => state)
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   fetchAnimeInfo(id)
+  // }, [id])
+
+  const { data, isLoading, isError } = useQuery(['info', id], () =>
     fetchAnimeInfo(id)
-  }, [id])
+  )
+  console.log(data)
 
   const ep =
     animeInfo?.episodes && animeInfo.episodes.length > 0
       ? animeInfo.episodes[animeInfo.episodes.length - 1]
       : null
 
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
   return (
     <div className='text-white bg-slate-500 h-screen'>
       <img

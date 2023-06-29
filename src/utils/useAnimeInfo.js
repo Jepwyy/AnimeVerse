@@ -1,22 +1,21 @@
 import { create } from 'zustand'
 import axios from '../api/api'
+
 export const useAnimeInfo = create((set, get) => ({
   animeInfo: [],
 
-  // fetchAnimeInfo: (id) =>
-  //   set((state) => {
-  //     axios
-  //       .get(`meta/anilist/info/${id}?provider=gogoanime`)
-  //       .then((res) => res.data)
-  //       .then((info) => {
-  //         state.setAnimeInfo(info)
-  //       })
-  //   }),
   fetchAnimeInfo: async (id) => {
-    const response = await axios.get(
-      `meta/anilist/info/${id}?provider=gogoanime`
-    )
+    try {
+      const response = await axios.get(
+        `meta/anilist/info/${id}?provider=gogoanime`
+      )
 
-    set(() => ({ animeInfo: response.data }))
+      set(() => ({ animeInfo: response.data }))
+
+      return response.data // Return the fetched data
+    } catch (error) {
+      console.error('Error occurred while fetching anime info:', error)
+      throw error
+    }
   },
 }))

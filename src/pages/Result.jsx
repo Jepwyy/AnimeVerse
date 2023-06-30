@@ -10,10 +10,16 @@ const Result = () => {
   const { data, isLoading, isError } = useQuery(
     ['search-result', advanceSearch],
     async () => {
-      const response = await axios.get(
-        `meta/anilist/advanced-search?query=${advanceSearch}`
-      )
-      return response.data
+      try {
+        const response = await axios.get(
+          `meta/anilist/advanced-search?query=${advanceSearch}`
+        )
+        return response.data
+      } catch (error) {
+        // Handle the error here
+        console.error('An error occurred:', error)
+        throw error // Rethrow the error to be caught by the caller
+      }
     }
   )
 

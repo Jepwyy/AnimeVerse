@@ -21,7 +21,7 @@ const TopList = () => {
     return <p>Error: {error.message}</p>
   }
   return (
-    <div className='w-[25%]'>
+    <div className=''>
       <div className='flex justify-between'>
         <div className='text-[#dddddd] font-semibold lg:text-1xl text-base'>
           Trending Anime

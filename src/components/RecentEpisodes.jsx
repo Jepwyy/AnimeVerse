@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { useQuery } from 'react-query'
 import axios from '../api/api'
-import { MdLocalMovies, MdOutlineStarRate } from 'react-icons/md'
-import { GrFormPrevious, GrFormNext } from 'react-icons/gr'
+import {
+  MdLocalMovies,
+  MdOutlineStarRate,
+  MdArrowBackIosNew,
+  MdArrowForwardIos,
+} from 'react-icons/md'
+
 import { formatRate } from '../utils/useFormats'
 const RecentEpisodes = () => {
   const [page, setPage] = useState(1)
   const [next, setNext] = useState(false)
   const [prev, setPrev] = useState(false)
-  const [episodes, setEpisodes] = useState([])
 
   const { data, isError, isLoading } = useQuery(
     ['recentEp', page],
@@ -16,43 +20,44 @@ const RecentEpisodes = () => {
       const response = await axios.get(
         `meta/anilist/recent-episodes?page=${page}&perPage=14&provider=gogoanime`
       )
+
       return response.data
     }
   )
 
-  useEffect(() => {
-    if (data) {
-      setEpisodes(data.results)
-    }
-  }, [data])
-
   return (
-    <div className='lg:w-[75%] w-full mb-20'>
+    <div className=''>
       <div className='flex items-center justify-between my-2'>
         <div className='text-[#dddddd] font-semibold lg:text-3xl text-base'>
           Recently Updated
         </div>
-        <div className='flex items-center gap-3'>
+        <div className='flex items-center gap-1'>
           <button
             disabled={page == 1 ? true : false}
             onClick={() => setPage(page - 1)}
-            className='bg-[#03C988] hover:bg-[#03c987e1] text-gray-100 font-semibold py-1 px-4 rounded-md inline-flex items-center '
+            className='text-[#dddddd] bg-[#202020] hover:bg-[#2a2a2a] rounded p-1 '
           >
-            <GrFormPrevious />
+            <MdArrowBackIosNew size={20} />
           </button>
-          <div className='text-[#dddddd]'>{page}</div>
+          <div className='text-[#dddddd] font-semibold py-[.10rem] px-2 bg-[#202020] hover:bg-[#2a2a2a] rounded '>
+            {page}
+          </div>
           <button
             disabled={isLoading ? true : false}
             onClick={() => setPage(page + 1)}
-            className='bg-[#03C988] hover:bg-[#03c987e1] text-gray-100 font-semibold py-1 px-4 rounded-md inline-flex items-center '
+            className=' text-[#dddddd] bg-[#202020] hover:bg-[#2a2a2a] rounded p-1'
           >
-            <GrFormNext />
+            <MdArrowForwardIos size={20} />
           </button>
         </div>
       </div>
 
-      <div className='grid md:grid-cols-7 grid-cols-3 gap-[.81rem]'>
-        {episodes.map((anime) => (
+      <div
+        className={`grid md:grid-cols-7 grid-cols-3 gap-[.81rem] ${
+          isLoading ? 'brightness-50' : ''
+        } `}
+      >
+        {data?.results?.map((anime) => (
           <div key={anime.episodeId} className='w-[100%]  rounded-md '>
             <img className=' aspect-[2/3]' src={anime.image} />
             <div className='bg-[#242424] flex items-center justify-between p-1  leading-none'>
@@ -61,7 +66,7 @@ const RecentEpisodes = () => {
                   <MdLocalMovies /> {anime.episodeNumber}
                 </span>
                 <span className='flex items-center bg-[#8f7003] py-[.15rem] px-[.25rem] rounded-r'>
-                  <MdOutlineStarRate />{' '}
+                  <MdOutlineStarRate />
                   {anime.rating == null ? '--' : formatRate(anime.rating)}
                 </span>
               </div>

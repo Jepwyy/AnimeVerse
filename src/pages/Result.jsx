@@ -11,9 +11,7 @@ const Result = () => {
     ['search-result', advanceSearch],
     async () => {
       try {
-        const response = await axios.get(
-          `meta/anilist/advanced-search?query=${advanceSearch}`
-        )
+        const response = await axios.get(`meta/anilist/${advanceSearch}`)
         return response.data
       } catch (error) {
         // Handle the error here
@@ -32,7 +30,8 @@ const Result = () => {
       <div className='flex flex-col lg:w-[75%] w-full'>
         <div className='flex items-center gap-1 text-white text-2xl font-thin pb-3'>
           <TbMapSearch size={30} color='#07bf67' />
-          Results : {advanceSearch}({data?.totalResults})
+          Results : {advanceSearch}
+          {/* ({data?.totalResults}) */}
         </div>
         <div className='w-full border-t-2 border-[#07bf67] lg:max-h-[50rem] overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-[#101112] '>
           {result?.map((item) => (

@@ -51,11 +51,11 @@ body {
 }
 
 .my-carousel-progress {
-  background: #ccc;
+  background: #474747;
 }
 
 .my-carousel-progress-bar {
-  background: greenyellow;
+  background: #07bf67;
   height: 0.1rem;
   transition: width 400ms ease;
 }

@@ -12,7 +12,6 @@ const TopList = () => {
         return results
       })
   )
-  console.log(data)
 
   if (isLoading) {
     return <p>Loading...</p>

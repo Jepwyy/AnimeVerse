@@ -20,13 +20,21 @@ const Banner = () => {
 
   const { data, isLoading, isError } = useQuery(['trending'], () =>
     axios
-      .get(`meta/anilist/advanced-search?sort=["TRENDING_DESC"]`)
+      .get(
+        `meta/anilist/advanced-search?sort=["TRENDING_DESC"]&page=1&perPage=20`
+      )
       .then((res) => {
-        const results = res.data.results.slice(0, 10)
-        return results
+        const results = res.data.results.filter(
+          (obj) => obj.status !== 'Not yet aired'
+        )
+        console.log(results)
+
+        const filteredResult = results.slice(0, 10)
+        console.log(filteredResult)
+        return filteredResult
       })
   )
-  console.log(data)
+  // console.log(data)
 
   useEffect(() => {
     const calculateProgress = (swiper) => {
@@ -70,7 +78,11 @@ const Banner = () => {
             <div className='relative flex h-full items-center justify-center '>
               <img
                 className='w-full h-full brightness-50 blur-[2px]'
-                src={item.cover == null ? '' : item.cover}
+                src={
+                  item.cover == null
+                    ? 'https://img.freepik.com/free-photo/deep-blue-plain-concrete-textured-background_53876-103890.jpg'
+                    : item.cover
+                }
               />
 
               <div className='absolute w-[90%] z-10  flex  '>

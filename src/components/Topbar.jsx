@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 //icon
 import { FaRandom } from 'react-icons/fa'
-import { TbMovie } from 'react-icons/tb'
+import { TbMovie, TbWorldSearch } from 'react-icons/tb'
 import { FaBook } from 'react-icons/fa'
 import { IoSearchSharp } from 'react-icons/io5'
 
@@ -31,8 +31,8 @@ const Topbar = () => {
         </Link>
         <SearchBar isActive={isActive} setIsActive={setIsActive} />
         <div className='text-[#AAAAAA] text-base font-semibold lg:flex hidden items-center gap-1 cursor-pointer hover:text-[#03C988]'>
-          <FaRandom size={20} />
-          Random
+          <TbWorldSearch size={20} />
+          Discover
         </div>
         <div className='text-[#AAAAAA] text-base font-semibold lg:flex hidden items-center gap-1 cursor-pointer hover:text-[#03C988]'>
           <TbMovie size={20} />

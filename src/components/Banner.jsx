@@ -2,16 +2,13 @@ import React, { useRef, useState, useEffect } from 'react'
 import { BsFillPlayFill } from 'react-icons/bs'
 import { RiStarSFill } from 'react-icons/ri'
 import { formatRate } from '../utils/useFormats'
-// Import Swiper React components
+import { Link } from 'react-router-dom'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import axios from '../api/api'
 import { useQuery } from 'react-query'
-// Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
-
-// import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper'
 
 const Banner = () => {
@@ -20,9 +17,7 @@ const Banner = () => {
 
   const { data, isLoading, isError } = useQuery(['trending'], () =>
     axios
-      .get(
-        `meta/anilist/advanced-search?sort=["TRENDING_DESC"]&page=1&perPage=20`
-      )
+      .get(`meta/anilist/advanced-search?sort=["TRENDING_DESC"]`)
       .then((res) => {
         const results = res.data.results.filter(
           (obj) => obj.status !== 'Not yet aired'
@@ -109,9 +104,11 @@ const Banner = () => {
                     {item.description}
                   </div>
                   <div>
-                    <button className='flex items-center justify-center bg-[#07bf67] rounded lg:px-4 px-3 lg:py-2 py-1 text-white text-xs'>
-                      <BsFillPlayFill size={23} /> Watch Now
-                    </button>
+                    <Link to={`/info/${item.id}`}>
+                      <button className='flex items-center justify-center bg-[#07bf67] rounded lg:px-4 px-3 lg:py-2 py-1 text-white text-xs'>
+                        <BsFillPlayFill size={23} /> Watch Now
+                      </button>
+                    </Link>
                   </div>
                 </div>
                 <div className='w-[50%] lg:flex hidden justify-center items-center '>

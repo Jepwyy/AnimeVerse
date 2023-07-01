@@ -33,7 +33,7 @@ const Result = () => {
           Results : {advanceSearch}
           {/* ({data?.totalResults}) */}
         </div>
-        <div className='w-full border-t-2 border-[#07bf67] lg:max-h-[50rem] overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-[#101112] '>
+        <div className='w-full border-t-2 border-[#07bf67] lg:h-[50rem] mb-10 overflow-y-auto scrollbar-thin scrollbar-thumb-black scrollbar-track-[#101112] '>
           {result?.map((item) => (
             <Link key={item.id} to={`/info/${item.id}`}>
               <div className='flex flex-row gap-7 py-5 pr-1'>

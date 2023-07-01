@@ -11,7 +11,9 @@ const Layout = () => {
           <Topbar />
         </div>
         <div className='flex-1 z-[0]  bg-[#101112]  h-[100vh] w-full overflow-auto relative scrollbar-thin scrollbar-thumb-black scrollbar-track-[#101112]'>
-          <Outlet />
+          <div className='min-h-full'>
+            <Outlet />
+          </div>
           <Footer />
         </div>
       </div>

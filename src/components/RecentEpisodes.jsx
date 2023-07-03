@@ -35,7 +35,7 @@ const RecentEpisodes = () => {
           <button
             disabled={page == 1 ? true : false}
             onClick={() => setPage(page - 1)}
-            className='text-[#dddddd] bg-[#202020] hover:bg-[#2a2a2a] rounded p-1 '
+            className='text-[#dddddd] bg-[#202020] hover:bg-[#2a2a2a] rounded p-1 disabled:cursor-not-allowed '
           >
             <MdArrowBackIosNew size={20} />
           </button>
@@ -45,7 +45,7 @@ const RecentEpisodes = () => {
           <button
             disabled={isLoading ? true : false}
             onClick={() => setPage(page + 1)}
-            className=' text-[#dddddd] bg-[#202020] hover:bg-[#2a2a2a] rounded p-1'
+            className=' text-[#dddddd] bg-[#202020] hover:bg-[#2a2a2a] rounded p-1 disabled:cursor-not-allowe'
           >
             <MdArrowForwardIos size={20} />
           </button>

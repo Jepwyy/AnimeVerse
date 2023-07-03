@@ -3,7 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import axios from '../api/api'
 import { useAnimeInfo } from '../utils/useAnimeInfo'
-
+import { formatPopularity, formatRate } from '../utils/useFormats'
+import { IoPlaySharp, IoPlayOutline } from 'react-icons/io5'
 const Info = () => {
   const { id } = useParams()
   const { animeInfo, fetchAnimeInfo } = useAnimeInfo((state) => state)
@@ -26,20 +27,144 @@ const Info = () => {
     return <p>Loading...</p>
   }
   return (
-    <div className='text-white bg-slate-500 h-screen'>
+    <div className='text-white  h-screen'>
       <img
-        className='relative w-full h-[20%] lg:h-[23%] brightness-50'
+        className=' w-full h-[20%] lg:h-[23%] brightness-50'
         src={animeInfo?.cover}
       />
-      <div className=' '>
-        <img className='w-[10rem]' src={animeInfo?.image} />
-        <h1 className=''>{animeInfo?.title?.english}</h1>
+      <div className='px-24 flex justify-between mt-4'>
+        <div>
+          <div className='text-2xl font-medium text-white'>
+            {animeInfo?.title.english}
+          </div>
+          <div className='text-base font-normal text-[#aaaaaa]'>
+            {animeInfo?.title.native}
+          </div>
+          <div className='text-[#aaa] text-sm'>{animeInfo?.duration}min</div>
+        </div>
+        <div>
+          <Link
+            className={`py-2 px-2 rounded-md text-sm font-medium uppercase flex items-center justify-center bg-[#ff0000]`}
+            to={`https://www.youtube.com/watch?v=${animeInfo?.trailer.id}`}
+          >
+            <IoPlaySharp size={18} /> Trailer
+          </Link>
+        </div>
       </div>
-      <div>
-        <Link to={`/play/${id}/${ep?.id}`}>
-          <button className='bg-black'>Watch</button>
-        </Link>
+      <div className='px-24 flex mt-3'>
+        <div className='w-[20%] pr-10 '>
+          <div className='w-[70%] flex flex-col gap-3'>
+            <img className='w-[100%] mt-[2.7rem]' src={animeInfo?.image} />
+            <Link className='w-full bg-[#07bf67] hover:bg-[#129055] py-2 rounded-md text-sm font-medium uppercase flex items-center justify-center'>
+              <IoPlayOutline size={20} /> Watch Latest Episode
+            </Link>
+            <Link
+              to={`/play/${id}/${ep?.id}`}
+              className='w-full border border-[#07bf67] text-[#07bf67] hover:text-white hover:bg-[#07bf67] py-2 rounded-md text-sm font-medium uppercase flex items-center justify-center'
+            >
+              <IoPlayOutline size={20} /> Start Watching Ep 1
+            </Link>
+            <div className='flex gap-3 justify-center flex-wrap'>
+              {animeInfo?.genres.map((genre, index) => (
+                <span
+                  className='border border-[#aaa] px-2 rounded-full text-[#aaa] font-light text-sm'
+                  key={index}
+                >
+                  {genre}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className='w-[40%]'>
+          <h1 className='font-bold text-white text-lg mb-2'>DETAILS</h1>
+          <div className='border-t-2 border-[#07bf67]'>
+            <table className='w-[80%]'>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>COUNTRY</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.countryOfOrigin}
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>POPULARITY</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {formatPopularity(animeInfo?.popularity)}k
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>STATUS</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.status}
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>RELEASE YEAR</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.releaseDate}
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>START DATE</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.startDate.month}, {animeInfo?.startDate.day},{' '}
+                  {animeInfo?.startDate.year}
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>END DATE</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.endDate.month}, {animeInfo?.endDate.day},{' '}
+                  {animeInfo?.endDate.year}
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>TOTAL EPISODES</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.totalEpisodes}
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>CURRENT EPISODES</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.currentEpisode}
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>RATING</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.rating}
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>SEASON</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.season}
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>STUDIO</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.studios}
+                </td>
+              </tr>
+              <tr className='border-b border-[#444]'>
+                <td className='text-[#aaa] pt-3 pb-1'>TYPE</td>
+                <td className='text-end font-medium pt-3 pb-1'>
+                  {animeInfo?.type}
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div className='w-[40%] '>
+          <h1 className='font-bold text-white text-lg mb-2'>STORYLINE</h1>
+          <div className='border-t-2 border-[#07bf67]'>
+            <p className='mt-3 text-sm'>{animeInfo?.description}</p>
+          </div>
+        </div>
       </div>
+      <div></div>
     </div>
   )
 }

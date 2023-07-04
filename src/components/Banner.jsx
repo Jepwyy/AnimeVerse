@@ -15,6 +15,10 @@ const Banner = () => {
   const [progress, setProgress] = useState(0) // State to track progress
   const progressRef = useRef({ swiper: null })
 
+  const HTMLRenderer = ({ htmlString }) => (
+    <div dangerouslySetInnerHTML={{ __html: htmlString }} />
+  )
+
   const { data, isLoading, isError } = useQuery(['trending'], async () => {
     try {
       const response = await axios.get(
@@ -102,7 +106,7 @@ const Banner = () => {
                     </div>
                   </div>
                   <div className='text-white line-clamp-2 lg:text-sm text-xs font-normal'>
-                    {item.description}
+                    <HTMLRenderer htmlString={item.description} />
                   </div>
                   <div>
                     <Link to={`/info/${item.id}`}>

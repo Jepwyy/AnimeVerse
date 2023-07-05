@@ -21,9 +21,7 @@ const Banner = () => {
 
   const { data, isLoading, isError } = useQuery(['trending'], async () => {
     try {
-      const response = await axios.get(
-        'meta/anilist/advanced-search?sort=["TRENDING_DESC"]'
-      )
+      const response = await axios.get('meta/anilist/trending')
       const results = response.data.results.filter(
         (obj) => obj.status !== 'Not yet aired'
       )

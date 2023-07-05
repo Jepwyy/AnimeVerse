@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useQuery } from 'react-query'
 import axios from '../api/api'
 import { useAnimeInfo } from '../utils/useAnimeInfo'
 import { formatPopularity, formatRate } from '../utils/useFormats'
 import { IoPlaySharp, IoPlayOutline } from 'react-icons/io5'
 const Info = () => {
+  const navigate = useNavigate()
   const { id } = useParams()
   const { animeInfo, fetchAnimeInfo } = useAnimeInfo((state) => state)
 
@@ -25,6 +26,25 @@ const Info = () => {
   if (isLoading) {
     return <p>Loading...</p>
   }
+
+  console.log(animeInfo?.episodes.length)
+
+  const handleLatest = () => {
+    if (animeInfo?.episodes.length == 0) {
+      alert('Not yet released')
+    } else {
+      navigate(`/play/${id}/${animeInfo?.episodes[0]?.id}`)
+    }
+  }
+
+  const handleStartt = () => {
+    if (animeInfo?.episodes.length == 0) {
+      alert('Not yet released')
+    } else {
+      navigate(`/play/${id}/${ep?.id}`)
+    }
+  }
+
   return (
     <div className='text-white pb-20'>
       <img
@@ -58,18 +78,18 @@ const Info = () => {
         <div className=' lg:w-[20%] w-full lg:pr-10 lg:px-0 px-16'>
           <div className='lg:w-[70%] flex flex-col gap-3'>
             <img className='w-[100%] mt-[2.7rem]' src={animeInfo?.image} />
-            <Link
-              to={`/play/${id}/${animeInfo?.episodes[0]?.id}`}
+            <button
+              onClick={handleLatest}
               className='w-full bg-[#07bf67] hover:bg-[#129055] py-2 rounded-md text-sm font-medium uppercase flex items-center justify-center'
             >
               <IoPlayOutline size={20} /> Watch Latest Episode
-            </Link>
-            <Link
-              to={`/play/${id}/${ep?.id}`}
+            </button>
+            <button
+              onClick={handleStartt}
               className='w-full border border-[#07bf67] text-[#07bf67] hover:text-white hover:bg-[#07bf67] py-2 rounded-md text-sm font-medium uppercase flex items-center justify-center'
             >
               <IoPlayOutline size={20} /> Start Watching Ep 1
-            </Link>
+            </button>
             <div className='flex gap-3 justify-center flex-wrap'>
               {animeInfo?.genres.map((genre, index) => (
                 <span

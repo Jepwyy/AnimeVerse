@@ -23,7 +23,7 @@ const Result = () => {
 
   const result = data?.results
 
-  console.log(result)
+  // console.log(result)
 
   return (
     <div className='lg:px-14 px-5 w-full flex lg:flex-row flex-col pt-10 gap-5'>

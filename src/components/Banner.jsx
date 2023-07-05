@@ -15,21 +15,24 @@ const Banner = () => {
   const [progress, setProgress] = useState(0) // State to track progress
   const progressRef = useRef({ swiper: null })
 
-  const { data, isLoading, isError } = useQuery(['trending'], () =>
-    axios
-      .get(`meta/anilist/advanced-search?sort=["TRENDING_DESC"]`)
-      .then((res) => {
-        const results = res.data.results.filter(
-          (obj) => obj.status !== 'Not yet aired'
-        )
-        console.log(results)
-
-        const filteredResult = results.slice(0, 10)
-        console.log(filteredResult)
-        return filteredResult
-      })
+  const HTMLRenderer = ({ htmlString }) => (
+    <div dangerouslySetInnerHTML={{ __html: htmlString }} />
   )
-  // console.log(data)
+
+  const { data, isLoading, isError } = useQuery(['trending'], async () => {
+    try {
+      const response = await axios.get('meta/anilist/trending')
+      const results = response.data.results.filter(
+        (obj) => obj.status !== 'Not yet aired'
+      )
+      const filteredResult = results.slice(0, 10)
+      return filteredResult
+    } catch (error) {
+      // Handle the error here
+      console.error('An error occurred:', error)
+      throw error
+    }
+  })
 
   useEffect(() => {
     const calculateProgress = (swiper) => {
@@ -101,7 +104,7 @@ const Banner = () => {
                     </div>
                   </div>
                   <div className='text-white line-clamp-2 lg:text-sm text-xs font-normal'>
-                    {item.description}
+                    <HTMLRenderer htmlString={item.description} />
                   </div>
                   <div>
                     <Link to={`/info/${item.id}`}>

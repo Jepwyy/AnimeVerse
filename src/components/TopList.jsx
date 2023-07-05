@@ -71,7 +71,7 @@ const TopList = () => {
                 <div className=''>
                   <img className='h-[5rem] w-16' src={item.image} />
                 </div>
-                <div className='flex flex-col justify-center font-normal  text-base uppercase line-clamp-1 w-[70%] gap-1'>
+                <div className='flex flex-col justify-center font-normal  lg:text-base text-xs uppercase line-clamp-1 w-[70%] gap-1'>
                   <div className='text-[#fff] '>
                     {item.title.english == null
                       ? item.title.userPreferred
@@ -80,7 +80,7 @@ const TopList = () => {
                   <div className='flex items-center text-[#aaa] gap-1 md:text-[.8rem] text-[.7rem]'>
                     <div className='flex items-center  gap-[.10rem] text-[#fff]'>
                       <span className='flex items-center bg-[#03C988] py-[.01em] px-[.25rem] rounded-l'>
-                        <MdLocalMovies /> {item.totalEpisodes}
+                        <MdLocalMovies /> {item.currentEpisode}
                       </span>
                       <span className='flex items-center bg-[#8f7003] py-[.01em] px-[.25rem] rounded-r'>
                         <MdOutlineStarRate />

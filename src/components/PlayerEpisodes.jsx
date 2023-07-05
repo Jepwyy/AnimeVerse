@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 const PlayerEpisodes = ({ animeInfo, id }) => {
   const { ep } = useParams()
   const [rangeFilter, setRangeFilter] = useState('')
+  const [isDescending, setIsDescending] = useState(false) // Added state for sorting order
   const episodes =
     animeInfo?.episodes && animeInfo.episodes.length > 0
       ? [...animeInfo.episodes].reverse()
@@ -35,16 +36,25 @@ const PlayerEpisodes = ({ animeInfo, id }) => {
     setRangeFilter(event.target.value)
   }
 
+  const handleSortOrder = () => {
+    setIsDescending(!isDescending)
+  }
+
   const filterEpisodesByRange = () => {
     if (!rangeFilter) {
-      return episodes
+      return episodes || [] // Return an empty array if episodes is null
     }
 
     const [start, end] = rangeFilter.split('-').map(Number)
-    return episodes.slice(start - 1, end)
+    return episodes?.slice(start - 1, end) || [] // Return an empty array if episodes is null
   }
 
   const filteredEpisodes = filterEpisodesByRange()
+
+  // Sort the episodes based on the selected order (descending/ascending)
+  const sortedEpisodes = isDescending
+    ? filteredEpisodes
+    : [...filteredEpisodes].reverse()
 
   return (
     <div>
@@ -58,8 +68,12 @@ const PlayerEpisodes = ({ animeInfo, id }) => {
             </option>
           ))}
       </select>
+      {/* Button for changing sorting order */}
+      <button className='bg-white' onClick={handleSortOrder}>
+        {isDescending ? 'Descending' : 'Ascending'}
+      </button>
       <div className='grid grid-cols-2 px-2 gap-1 gap-y-3 max-h-[31.7rem] overflow-y-auto '>
-        {filteredEpisodes?.map((episode) => {
+        {sortedEpisodes?.map((episode) => {
           const isSaved = localStorage.getItem('ep')?.includes(episode.id)
 
           return (

@@ -4,11 +4,14 @@ import { Link, useParams } from 'react-router-dom'
 const PlayerEpisodes = ({ animeInfo, id }) => {
   const { ep } = useParams()
   const [rangeFilter, setRangeFilter] = useState('')
-  const [isDescending, setIsDescending] = useState(false) // Added state for sorting order
+  const [isDescending, setIsDescending] = useState(
+    animeInfo?.episodes?.[0]?.id !== ep
+  ) // Added state for sorting order
   const episodes =
     animeInfo?.episodes && animeInfo.episodes.length > 0
       ? [...animeInfo.episodes].reverse()
       : null
+  console.log(episodes)
 
   useEffect(() => {
     const savedEpisodes = localStorage.getItem('ep') || ''
@@ -72,7 +75,7 @@ const PlayerEpisodes = ({ animeInfo, id }) => {
       <button className='bg-white' onClick={handleSortOrder}>
         {isDescending ? 'Descending' : 'Ascending'}
       </button>
-      <div className='grid grid-cols-2 px-2 gap-1 gap-y-3 max-h-[31.7rem] overflow-y-auto '>
+      <div className='grid grid-cols-1 px-2 gap-1 gap-y-3 max-h-[31.7rem] overflow-y-auto '>
         {sortedEpisodes?.map((episode) => {
           const isSaved = localStorage.getItem('ep')?.includes(episode.id)
 
@@ -87,7 +90,7 @@ const PlayerEpisodes = ({ animeInfo, id }) => {
                     : 'bg-[#555]'
                 }`}
               >
-                {episode.id}
+                Ep - {episode?.number} - {episode.title}
               </div>
             </Link>
           )

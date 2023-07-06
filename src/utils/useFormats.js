@@ -8,3 +8,9 @@ export function formatPopularity(popularity) {
   const fixedPopularity = formattedPopularity.toFixed(1)
   return fixedPopularity
 }
+
+export function formatTime(time) {
+  const formattedTime = new Date(time * 1000).toLocaleString()
+
+  return formattedTime
+}

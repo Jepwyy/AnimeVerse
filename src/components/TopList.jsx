@@ -6,16 +6,23 @@ import { formatRate } from '../utils/useFormats'
 import { Link } from 'react-router-dom'
 
 const TopList = () => {
-  const { data, isLoading, error } = useQuery(['topList'], () =>
-    axios
-      .get(
-        `meta/anilist/advanced-search?sort=["TRENDING_DESC"]&status=RELEASING`
+  const { data, isLoading, error } = useQuery(['topList'], async () => {
+    try {
+      const response = await axios.get(
+        'meta/anilist/trending?page=1&perPage=40'
       )
-      .then((res) => {
-        const results = res.data.results.slice(0, 9)
-        return results
-      })
-  )
+      const results = response.data.results.filter(
+        (obj) => obj.status == 'Ongoing'
+      )
+      console.log(results)
+      const filteredResult = results.slice(0, 9)
+      return filteredResult
+    } catch (error) {
+      // Handle the error here
+      console.error('An error occurred:', error)
+      throw error
+    }
+  })
 
   if (isLoading) {
     return <p>Loading...</p>
@@ -80,7 +87,7 @@ const TopList = () => {
                   <div className='flex items-center text-[#aaa] gap-1 md:text-[.8rem] text-[.7rem]'>
                     <div className='flex items-center  gap-[.10rem] text-[#fff]'>
                       <span className='flex items-center bg-[#03C988] py-[.01em] px-[.25rem] rounded-l'>
-                        <MdLocalMovies /> {item.currentEpisode}
+                        <MdLocalMovies /> {item.totalEpisodes}
                       </span>
                       <span className='flex items-center bg-[#8f7003] py-[.01em] px-[.25rem] rounded-r'>
                         <MdOutlineStarRate />

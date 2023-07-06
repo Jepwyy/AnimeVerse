@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-
-const PlayerEpisodes = ({ animeInfo, id }) => {
+import { PiSortDescending, PiSortAscending } from 'react-icons/pi'
+const PlayerEpisodes = ({ animeInfo, id, episodes }) => {
   const { ep } = useParams()
   const [rangeFilter, setRangeFilter] = useState('')
   const [isDescending, setIsDescending] = useState(
     animeInfo?.episodes?.[0]?.id !== ep
   ) // Added state for sorting order
-  const episodes =
-    animeInfo?.episodes && animeInfo.episodes.length > 0
-      ? [...animeInfo.episodes].reverse()
-      : null
+
   console.log(episodes)
 
   useEffect(() => {
@@ -60,41 +57,57 @@ const PlayerEpisodes = ({ animeInfo, id }) => {
     : [...filteredEpisodes].reverse()
 
   return (
-    <div>
+    <div className=''>
       {/* Select element for range filtering */}
-      <select className='mb-3' value={rangeFilter} onChange={handleRangeFilter}>
-        <option value=''>All Episodes</option>
-        {episodes &&
-          generateRangeOptions(episodes.length).map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-      </select>
-      {/* Button for changing sorting order */}
-      <button className='bg-white' onClick={handleSortOrder}>
-        {isDescending ? 'Descending' : 'Ascending'}
-      </button>
-      <div className='grid grid-cols-1 px-2 gap-1 gap-y-3 max-h-[31.7rem] overflow-y-auto '>
-        {sortedEpisodes?.map((episode) => {
-          const isSaved = localStorage.getItem('ep')?.includes(episode.id)
+      <div className='p-3 flex gap-1 border-b border-[#555]'>
+        <select
+          className='bg-[#333] text-[#ccc] text-xs p-1 rounded scrollbar-thin scrollbar-thumb-black scrollbar-track-[#101112]'
+          value={rangeFilter}
+          onChange={handleRangeFilter}
+        >
+          <option value=''>All Episodes</option>
+          {episodes &&
+            generateRangeOptions(episodes.length).map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+        </select>
+        {/* Button for changing sorting order */}
+        <button
+          className='bg-[#333] text-[#ccc] text-xs p-1 rounded'
+          onClick={handleSortOrder}
+        >
+          {isDescending ? (
+            <PiSortDescending size={20} />
+          ) : (
+            <PiSortAscending size={20} />
+          )}
+        </button>
+      </div>
+      <div className='p-3 rounded-sm'>
+        <div className='grid grid-cols-1 gap-1 px-1  gap-y-1 max-h-[34.5rem] overflow-y-auto scrollbar-thin scrollbar-thumb-[#444] scrollbar-track-[#101112]'>
+          {sortedEpisodes?.map((episode) => {
+            const isSaved = localStorage.getItem('ep')?.includes(episode.id)
 
-          return (
-            <Link to={`/play/${id}/${episode?.id}`} key={episode.id}>
-              <div
-                className={`text-white  p-1 ${
-                  ep === episode?.id
-                    ? 'bg-[#07bf67]'
-                    : isSaved
-                    ? 'bg-[#0c6339]'
-                    : 'bg-[#555]'
-                }`}
-              >
-                Ep - {episode?.number} - {episode.title}
-              </div>
-            </Link>
-          )
-        })}
+            return (
+              <Link to={`/play/${id}/${episode?.id}`} key={episode.id}>
+                <div
+                  className={`text-[#ccc] line-clamp-1  p-1 ${
+                    ep === episode?.id
+                      ? 'bg-[#07bf67]'
+                      : isSaved
+                      ? 'bg-[#0c6339]'
+                      : 'bg-[#333]'
+                  }`}
+                >
+                  <span className='pl-1 font-semibold'>{episode?.number}</span>{' '}
+                  - <span className='text-sm'>{episode.title}</span>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

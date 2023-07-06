@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
-const PlayerEpisodes = ({ animeInfo, id }) => {
+const PlayerEpisodes = ({ animeInfo, id, episodes }) => {
   const { ep } = useParams()
   const [rangeFilter, setRangeFilter] = useState('')
   const [isDescending, setIsDescending] = useState(
     animeInfo?.episodes?.[0]?.id !== ep
   ) // Added state for sorting order
-  const episodes =
-    animeInfo?.episodes && animeInfo.episodes.length > 0
-      ? [...animeInfo.episodes].reverse()
-      : null
+
   console.log(episodes)
 
   useEffect(() => {

@@ -53,7 +53,7 @@ const RecentEpisodes = () => {
       </div>
 
       <div
-        className={`grid md:grid-cols-7 grid-cols-3 gap-[.81rem] ${
+        className={`grid lg:grid-cols-7 grid-cols-3 gap-[.81rem] ${
           isLoading ? 'brightness-50' : ''
         } `}
       >

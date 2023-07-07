@@ -94,7 +94,7 @@ const Player = () => {
             </div>
           </div>
           <div>
-            <Relations />
+            <Relations animeInfo={animeInfo} />
           </div>
         </div>
         <div className='lg:w-[20%] w-full'>

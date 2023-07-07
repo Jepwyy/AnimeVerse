@@ -89,7 +89,7 @@ const SearchBar = ({ isActive, setIsActive }) => {
                 onChange={handleSuggest}
                 autoComplete='off'
                 type='text'
-                id='voice-search'
+                id='ssearch'
                 className='bg-[#141414] text-white text-sm rounded-t-lg focus:ring-0 block w-full pl-10 p-2.5 outline-none'
                 placeholder='Search anime active...'
               />
@@ -155,7 +155,8 @@ const SearchBar = ({ isActive, setIsActive }) => {
           </div>
           <input
             type='text'
-            id='voice-search'
+            id='search'
+            autoComplete='off'
             className='bg-[#141414] text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5 outline-none'
             placeholder='Search anime...'
           />

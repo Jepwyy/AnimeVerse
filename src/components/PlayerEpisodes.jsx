@@ -8,8 +8,6 @@ const PlayerEpisodes = ({ animeInfo, id, episodes }) => {
     animeInfo?.episodes?.[0]?.id !== ep
   ) // Added state for sorting order
 
-  console.log(episodes)
-
   useEffect(() => {
     const savedEpisodes = localStorage.getItem('ep') || ''
     const episodesArray = savedEpisodes.split(',')
@@ -61,7 +59,7 @@ const PlayerEpisodes = ({ animeInfo, id, episodes }) => {
       {/* Select element for range filtering */}
       <div className='p-3 flex gap-1 border-b border-[#555]'>
         <select
-          className='bg-[#333] text-[#ccc] text-xs p-1 rounded scrollbar-thin scrollbar-thumb-black scrollbar-track-[#101112]'
+          className='bg-[#333] text-[#ccc] outline-none text-xs p-1 rounded scrollbar-thin scrollbar-thumb-black scrollbar-track-[#101112]'
           value={rangeFilter}
           onChange={handleRangeFilter}
         >
@@ -86,23 +84,23 @@ const PlayerEpisodes = ({ animeInfo, id, episodes }) => {
         </button>
       </div>
       <div className='p-3 rounded-sm'>
-        <div className='grid grid-cols-1 gap-1 px-1  gap-y-1 max-h-[34.5rem] overflow-y-auto scrollbar-thin scrollbar-thumb-[#444] scrollbar-track-[#101112]'>
+        <div className='grid grid-cols-1 gap-1 px-1  gap-y-1 max-h-[38rem] overflow-y-auto scrollbar-thin scrollbar-thumb-[#444] scrollbar-track-[#101112]'>
           {sortedEpisodes?.map((episode) => {
             const isSaved = localStorage.getItem('ep')?.includes(episode.id)
 
             return (
               <Link to={`/play/${id}/${episode?.id}`} key={episode.id}>
                 <div
-                  className={`text-[#ccc] line-clamp-1  p-1 ${
+                  className={` line-clamp-1 rounded  p-1 ${
                     ep === episode?.id
-                      ? 'bg-[#07bf67]'
+                      ? 'bg-[#07bf67] text-[#fff]'
                       : isSaved
-                      ? 'bg-[#0c6339]'
-                      : 'bg-[#333]'
+                      ? 'bg-[#0c6339] text-[#ccc]'
+                      : 'bg-[#333] text-[#ccc]'
                   }`}
                 >
                   <span className='pl-1 font-semibold'>{episode?.number}</span>{' '}
-                  - <span className='text-sm'>{episode.title}</span>
+                  <span className='text-sm'>{episode.title}</span>
                 </div>
               </Link>
             )

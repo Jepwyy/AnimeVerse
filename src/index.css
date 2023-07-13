@@ -10,12 +10,11 @@
     url('./assets/fonts/Cyberjunkies-Italic.ttf') format('truetype');
 }
 
-body {
+* {
   margin: 0;
   padding: 0;
-  min-width: 320px;
-  min-height: 100vh;
 }
+
 .slant-container {
   transform: skew(14deg);
 }

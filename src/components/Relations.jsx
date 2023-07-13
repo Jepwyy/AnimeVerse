@@ -11,10 +11,14 @@ const Relations = ({ animeInfo }) => {
   return (
     <div>
       <div className='text-[#dddddd] font-semibold lg:text-2xl text-base mb-5'>
-        Relations
+        {animeInfo?.relations?.filter(
+          (obj) => obj.type !== 'MANGA' && obj.type !== 'NOVEL'
+        ).length == 0
+          ? ''
+          : 'Relations'}
       </div>
       <div
-        className={`grid lg:grid-cols-7 grid-cols-3 max-h-[44rem] overflow-y-auto gap-[.81rem] scrollbar-thin scrollbar-thumb-black scrollbar-track-[#101112] px-1`}
+        className={`grid lg:grid-cols-7 grid-cols-3 max-h-[46rem] overflow-y-auto gap-[.81rem] scrollbar-thin scrollbar-thumb-black scrollbar-track-[#101112] px-1`}
       >
         {animeInfo?.relations
           ?.filter((obj) => obj.type !== 'MANGA' && obj.type !== 'NOVEL')
@@ -37,7 +41,7 @@ const Relations = ({ animeInfo }) => {
                   </div>
                 </div>
                 <div className='md:text-[1rem] text-[.9rem] font-normal leading-none text-[#aaaaaa]'>
-                  <p className='line-clamp-2'>
+                  <p className='line-clamp-3'>
                     {item?.title.english == null
                       ? item?.title.userPreferred
                       : item?.title.english}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { MdOutlineStarRate } from 'react-icons/md'
 import { formatRate } from '../utils/useFormats'
+import { Link } from 'react-router-dom'
 const Recommendation = ({ animeInfo }) => {
   return (
     <div>
@@ -9,7 +10,8 @@ const Recommendation = ({ animeInfo }) => {
       </div>
       <div className='flex flex-col gap-3'>
         {animeInfo?.recommendations?.slice(0, 15).map((item) => (
-          <div
+          <Link
+            to={`/info/${item.id}`}
             key={item.id}
             className='flex flex-row gap-4 bg-[#242424] rounded'
           >
@@ -30,7 +32,7 @@ const Recommendation = ({ animeInfo }) => {
                 </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

@@ -88,7 +88,7 @@ const Info = () => {
               onClick={handleStartt}
               className='w-full border border-[#07bf67] text-[#07bf67] hover:text-white hover:bg-[#07bf67] py-2 rounded-md text-sm font-medium uppercase flex items-center justify-center'
             >
-              <IoPlayOutline size={20} /> Start Watching Ep 1
+              <IoPlayOutline size={20} /> Start Watching
             </button>
             <div className='flex gap-3 justify-center flex-wrap'>
               {animeInfo?.genres.map((genre, index) => (

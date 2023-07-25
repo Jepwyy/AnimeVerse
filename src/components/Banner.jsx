@@ -51,6 +51,12 @@ const Banner = () => {
     }
   }, [])
 
+  if (isLoading) {
+    return (
+      <div className='lg:h-[24rem] animate-pulse h-[12rem] w-full bg-[#191919] rounded-lg'></div>
+    )
+  }
+
   return (
     <div className=''>
       <Swiper

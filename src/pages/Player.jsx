@@ -8,6 +8,7 @@ import { formatTime } from '../utils/useFormats'
 import { BiSolidBell } from 'react-icons/bi'
 import Recommendation from '../components/Recommendation'
 import Relations from '../components/Relations'
+import Loader from '../components/Loader'
 
 const Player = () => {
   const { animeInfo, fetchAnimeInfo } = useAnimeInfo((state) => state)
@@ -26,7 +27,7 @@ const Player = () => {
 
   // console.log(data)
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Loader />
   }
 
   if (isError) {

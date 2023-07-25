@@ -60,7 +60,7 @@ const VideoPlayer = ({ sources }) => {
   }
 
   return (
-    <Player>
+    <Player autoPlay={false}>
       <source src={sources[0].url} type='application/x-mpegURL' />
       <ControlBar>
         <ReplayControl seconds={5} order={2.1} />

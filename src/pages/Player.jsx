@@ -8,7 +8,7 @@ import { formatTime } from '../utils/useFormats'
 import { BiSolidBell } from 'react-icons/bi'
 import Recommendation from '../components/Recommendation'
 import Relations from '../components/Relations'
-import VideoPlayer from '../components/VideoPlayer'
+
 const Player = () => {
   const { animeInfo, fetchAnimeInfo } = useAnimeInfo((state) => state)
   const navigate = useNavigate()
@@ -19,14 +19,11 @@ const Player = () => {
     fetchAnimeInfo(id)
   }, [id])
 
-  const {
-    data: sources,
-    isError,
-    isLoading,
-  } = useQuery(['recentEp', ep], async () => {
-    const response = await axios.get(`meta/anilist/watch/${ep}`)
-    return response.data.sources
+  const { data, isError, isLoading } = useQuery(['recentEp', ep], async () => {
+    const response = await axios.get(`/stream/${ep}`)
+    return response.data.plyr.main
   })
+
   // console.log(data)
   if (isLoading) {
     return <div>Loading...</div>
@@ -68,13 +65,12 @@ const Player = () => {
             </div>
             <div className='lg:w-[80%] w-full lg:order-none order-first rounded-md bg-[#080808]'>
               <div>
-                {/* <iframe
+                <iframe
                   src={data}
                   title='Anime Episode'
                   allowFullScreen
                   className='bg-[#080808] w-full  aspect-video'
-                /> */}
-                <VideoPlayer sources={sources} />
+                />
               </div>
               <div className='flex md:flex-row flex-col justify-between items-center px-2 py-2'>
                 <div>

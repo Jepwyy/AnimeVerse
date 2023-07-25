@@ -9,7 +9,7 @@ const TopList = () => {
   const { data, isLoading, error } = useQuery(['topList'], async () => {
     try {
       const response = await axios.get(
-        'meta/anilist/trending?page=1&perPage=40'
+        'meta/anilist/trending?page=1&perPage=30'
       )
       const results = response.data.results.filter(
         (obj) => obj.status == 'Ongoing'
@@ -25,7 +25,19 @@ const TopList = () => {
   })
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return (
+      <div className>
+        <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
+        <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
+        <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
+        <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
+        <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
+        <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
+        <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
+        <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
+        <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
+      </div>
+    )
   }
 
   if (error) {
@@ -104,12 +116,6 @@ const TopList = () => {
             </div>
           </Link>
         ))}
-
-        {/* <ul>
-          {data.map((item) => (
-            <li key={item.id}>{item.title.english}</li>
-          ))}
-        </ul> */}
       </div>
     </div>
   )

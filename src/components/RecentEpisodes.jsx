@@ -53,10 +53,27 @@ const RecentEpisodes = () => {
       </div>
 
       <div
-        className={`grid lg:grid-cols-7 grid-cols-3 gap-[.81rem] ${
-          isLoading ? 'brightness-50' : ''
-        } `}
+        className={`grid lg:grid-cols-7 grid-cols-3 gap-[.81rem] 
+           `}
       >
+        {isLoading && (
+          <>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+          </>
+        )}
         {data?.results?.map((anime) => (
           <Link key={anime.episodeId} to={`/info/${anime.id}`}>
             <div className='w-[100%]  rounded-md '>

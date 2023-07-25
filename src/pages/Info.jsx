@@ -5,6 +5,7 @@ import axios from '../api/api'
 import { useAnimeInfo } from '../utils/useAnimeInfo'
 import { formatPopularity, formatRate } from '../utils/useFormats'
 import { IoPlaySharp, IoPlayOutline } from 'react-icons/io5'
+import Loader from '../components/Loader'
 const Info = () => {
   const navigate = useNavigate()
   const { id } = useParams()
@@ -14,7 +15,7 @@ const Info = () => {
     <div dangerouslySetInnerHTML={{ __html: htmlString }} />
   )
 
-  const { data, isLoading, isError } = useQuery(['info', id], () =>
+  const { data, isLoading, isError, refetch } = useQuery(['info', id], () =>
     fetchAnimeInfo(id)
   )
 
@@ -24,10 +25,11 @@ const Info = () => {
       : null
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <Loader />
   }
-
-  console.log(animeInfo?.episodes.length)
+  if (isError) {
+    refetch
+  }
 
   const handleLatest = () => {
     if (animeInfo?.episodes.length == 0) {

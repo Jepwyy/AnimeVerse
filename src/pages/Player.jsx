@@ -26,9 +26,6 @@ const Player = () => {
   })
 
   // console.log(data)
-  if (isLoading) {
-    return <Loader />
-  }
 
   if (isError) {
     return <div>Error occurred while fetching data.</div>
@@ -65,7 +62,8 @@ const Player = () => {
               />
             </div>
             <div className='lg:w-[80%] w-full lg:order-none order-first rounded-md bg-[#080808]'>
-              <div>
+              <div className='relative'>
+                {isLoading && <Loader />}
                 <iframe
                   src={data}
                   title='Anime Episode'

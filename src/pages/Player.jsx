@@ -8,6 +8,7 @@ import { formatTime } from '../utils/useFormats'
 import { BiSolidBell } from 'react-icons/bi'
 import Recommendation from '../components/Recommendation'
 import Relations from '../components/Relations'
+
 const Player = () => {
   const { animeInfo, fetchAnimeInfo } = useAnimeInfo((state) => state)
   const navigate = useNavigate()
@@ -19,9 +20,18 @@ const Player = () => {
   }, [id])
 
   const { data, isError, isLoading } = useQuery(['recentEp', ep], async () => {
-    const response = await axios.get(`stream/${ep}`)
+    const response = await axios.get(`/stream/${ep}`)
     return response.data.plyr.main
   })
+
+  // console.log(data)
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
+
+  if (isError) {
+    return <div>Error occurred while fetching data.</div>
+  }
 
   const episodes =
     animeInfo?.episodes && animeInfo.episodes.length > 0

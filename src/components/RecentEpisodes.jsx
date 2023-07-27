@@ -58,20 +58,20 @@ const RecentEpisodes = () => {
       >
         {isLoading && (
           <>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
-            <div className='bg-[#191919] h-[18rem] w-[100%]'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
+            <div className='bg-[#191919] sm:h-[18rem] h-[12rem] w-[100%] animate-pulse'></div>
           </>
         )}
         {data?.results?.map((anime) => (

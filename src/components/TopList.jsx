@@ -14,7 +14,7 @@ const TopList = () => {
       const results = response.data.results.filter(
         (obj) => obj.status == 'Ongoing'
       )
-      console.log(results)
+
       const filteredResult = results.slice(0, 9)
       return filteredResult
     } catch (error) {
@@ -26,7 +26,7 @@ const TopList = () => {
 
   if (isLoading) {
     return (
-      <div className>
+      <div className=''>
         <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
         <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
         <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>

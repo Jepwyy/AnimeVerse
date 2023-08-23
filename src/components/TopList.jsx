@@ -90,8 +90,8 @@ const TopList = () => {
                 <div className=''>
                   <img className='h-[5rem] w-16' src={item.image} />
                 </div>
-                <div className='flex flex-col justify-center font-normal  lg:text-base text-xs uppercase line-clamp-1 w-[70%] gap-1'>
-                  <div className='text-[#fff] '>
+                <div className='flex flex-col justify-center font-normal  lg:text-base text-xs uppercase w-[70%] gap-1'>
+                  <div className='text-[#fff] line-clamp-2'>
                     {item.title.english == null
                       ? item.title.userPreferred
                       : item.title.english}

@@ -20,6 +20,11 @@ export default defineConfig({
             sizes: '192x192',
             type: 'image/png',
           },
+          {
+            src: './src/assets/img/pwaLogo1.png',
+            type: 'image/png',
+            sizes: '512x512',
+          },
         ],
       },
       registerType: 'autoUpdate',

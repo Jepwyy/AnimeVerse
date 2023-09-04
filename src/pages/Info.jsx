@@ -84,7 +84,7 @@ const Info = () => {
               onClick={handleLatest}
               className='w-full bg-[#07bf67] hover:bg-[#129055] py-2 rounded-md text-sm font-medium uppercase flex items-center justify-center'
             >
-              <IoPlayOutline size={20} /> Watch Latest Episode
+              <IoPlayOutline size={20} /> Watch Latest
             </button>
             <button
               onClick={handleStartt}

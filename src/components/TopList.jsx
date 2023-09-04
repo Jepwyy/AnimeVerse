@@ -14,7 +14,7 @@ const TopList = () => {
       const results = response.data.results.filter(
         (obj) => obj.status == 'Ongoing'
       )
-      console.log(results)
+
       const filteredResult = results.slice(0, 9)
       return filteredResult
     } catch (error) {
@@ -26,7 +26,7 @@ const TopList = () => {
 
   if (isLoading) {
     return (
-      <div className>
+      <div className=''>
         <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
         <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
         <div className='h-[5rem] animate-pulse w-full bg-[#191919] rounded-md my-2'></div>
@@ -90,8 +90,8 @@ const TopList = () => {
                 <div className=''>
                   <img className='h-[5rem] w-16' src={item.image} />
                 </div>
-                <div className='flex flex-col justify-center font-normal  lg:text-base text-xs uppercase line-clamp-1 w-[70%] gap-1'>
-                  <div className='text-[#fff] '>
+                <div className='flex flex-col justify-center font-normal  lg:text-base text-xs uppercase w-[70%] gap-1'>
+                  <div className='text-[#fff] line-clamp-2'>
                     {item.title.english == null
                       ? item.title.userPreferred
                       : item.title.english}

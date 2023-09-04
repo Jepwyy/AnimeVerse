@@ -16,12 +16,12 @@ export default defineConfig({
         display: 'standalone',
         icons: [
           {
-            src: './src/assets/img/pwaLogo.png',
+            src: '/pwaLogo.png',
             sizes: '192x192',
             type: 'image/png',
           },
           {
-            src: './src/assets/img/pwaLogo1.png',
+            src: '/pwaLogo1.png',
             type: 'image/png',
             sizes: '512x512',
           },

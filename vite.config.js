@@ -16,7 +16,7 @@ export default defineConfig({
         display: 'standalone',
         icons: [
           {
-            src: '/src/assets/icon/192-192.png',
+            src: './src/assets/img/pwaLogo.png',
             sizes: '192x192',
             type: 'image/png',
           },

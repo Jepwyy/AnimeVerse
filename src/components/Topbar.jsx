@@ -23,8 +23,8 @@ const Topbar = () => {
               isActive ? 'hidden' : 'flex'
             } lg:flex`}
           >
-            <img className='h-7 mr-1' src={logo} alt='logo' />
-            <div className='text-white text-4xl font-cyberjunkies'>
+            <img className='md:h-7 h-[1.18rem] mr-1' src={logo} alt='logo' />
+            <div className='text-white md:text-4xl text-2xl font-cyberjunkies'>
               Anime<span className='text-[#07bf67]'>Verse</span>
             </div>
           </div>

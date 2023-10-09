@@ -88,7 +88,10 @@ const TopList = () => {
                   {index + 1}
                 </div>
                 <div className=''>
-                  <img className='h-[5rem] w-16' src={item.image} />
+                  <img
+                    className='h-[5rem] min-w-[4rem] max-w-[4rem] '
+                    src={item.image}
+                  />
                 </div>
                 <div className='flex flex-col justify-center font-normal  lg:text-base text-xs uppercase w-[70%] gap-1'>
                   <div className='text-[#fff] line-clamp-2'>

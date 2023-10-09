@@ -41,11 +41,11 @@ const Release = () => {
 
   return (
     <div className='mt-4'>
-      <h2 className='text-[#dddddd] font-semibold lg:text-2xl text-base mb-2'>
+      <h2 className='text-[#dddddd] font-semibold lg:text-2xl text-lg mb-2'>
         Release
       </h2>
-      <div className='flex flex-row gap-2'>
-        <div className='flex flex-col gap-3 w-1/4'>
+      <div className='flex lg:flex-row flex-col gap-2'>
+        <div className='flex flex-col gap-3 lg:w-1/4 w-full'>
           <h2 className='text-[#dddddd] font-semibold lg:text-xl text-base'>
             Summer
           </h2>
@@ -80,7 +80,7 @@ const Release = () => {
                 </Link>
               ))}
         </div>
-        <div className='flex flex-col gap-3 w-1/4'>
+        <div className='flex flex-col gap-3 lg:w-1/4 w-full'>
           <h2 className='text-[#dddddd] font-semibold lg:text-xl text-base'>
             Fall
           </h2>
@@ -115,7 +115,7 @@ const Release = () => {
                 </Link>
               ))}
         </div>
-        <div className='flex flex-col gap-3 w-1/4'>
+        <div className='flex flex-col gap-3 lg:w-1/4 w-full'>
           <h2 className='text-[#dddddd] font-semibold lg:text-xl text-base'>
             Spring
           </h2>
@@ -150,7 +150,7 @@ const Release = () => {
                 </Link>
               ))}
         </div>
-        <div className='flex flex-col gap-3 w-1/4'>
+        <div className='flex flex-col gap-3 lg:w-1/4 w-full'>
           <h2 className='text-[#dddddd] font-semibold lg:text-xl text-base'>
             Winter
           </h2>

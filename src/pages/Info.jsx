@@ -18,6 +18,9 @@ const Info = () => {
   const { data, isLoading, isError, refetch } = useQuery(['info', id], () =>
     fetchAnimeInfo(id)
   )
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const ep =
     animeInfo?.episodes && animeInfo.episodes.length > 0

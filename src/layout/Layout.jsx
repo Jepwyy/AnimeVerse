@@ -14,7 +14,9 @@ const Layout = () => {
           <div className='min-h-screen'>
             <Outlet />
           </div>
-          <Footer />
+          <div className='lg:block hidden '>
+            <Footer />
+          </div>
         </div>
       </div>
     </div>

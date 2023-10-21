@@ -38,7 +38,7 @@ const Info = () => {
     if (animeInfo?.episodes.length == 0) {
       alert('Not yet released')
     } else {
-      navigate(`/play/${id}/${animeInfo?.episodes[0]?.id}`)
+      navigate(`/play/${id}${animeInfo?.episodes[0]?.id}`)
     }
   }
 
@@ -46,7 +46,7 @@ const Info = () => {
     if (animeInfo?.episodes.length == 0) {
       alert('Not yet released')
     } else {
-      navigate(`/play/${id}/${ep?.id}`)
+      navigate(`/play/${id}${ep?.id}`)
     }
   }
 

@@ -38,6 +38,11 @@ const PlayerEpisodes = ({ animeInfo, id, episodes }) => {
     setIsDescending(!isDescending)
   }
 
+  const filterId = (id) => {
+    const regex = new RegExp('/', 'g')
+    return id.replace(regex, '')
+  }
+
   const filterEpisodesByRange = () => {
     if (!rangeFilter) {
       return episodes || [] // Return an empty array if episodes is null
@@ -86,13 +91,15 @@ const PlayerEpisodes = ({ animeInfo, id, episodes }) => {
       <div className='p-3 rounded-sm'>
         <div className='grid grid-cols-1 gap-1 px-1  gap-y-1 max-h-[38rem] overflow-y-auto scrollbar-thin scrollbar-thumb-[#444] scrollbar-track-[#101112]'>
           {sortedEpisodes?.map((episode) => {
-            const isSaved = localStorage.getItem('ep')?.includes(episode.id)
+            const isSaved = localStorage
+              .getItem('ep')
+              ?.includes(filterId(episode.id))
 
             return (
-              <Link to={`/play/${id}/${episode?.id}`} key={episode.id}>
+              <Link to={`/play/${id}${episode?.id}`} key={episode.id}>
                 <div
                   className={` line-clamp-1 rounded  p-1 ${
-                    ep === episode?.id
+                    ep === filterId(episode?.id)
                       ? 'bg-[#07bf67] text-[#fff]'
                       : isSaved
                       ? 'bg-[#0c6339] text-[#ccc]'

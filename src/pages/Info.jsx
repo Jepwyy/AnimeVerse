@@ -49,6 +49,7 @@ const Info = () => {
       navigate(`/play/${id}${ep?.id}`)
     }
   }
+  console.log(animeInfo)
 
   return (
     <div className='text-white pb-20'>

@@ -13,7 +13,9 @@ const Home = () => {
       <div className=' flex lg:flex-row flex-col gap-6 mb-20 mt-8'>
         <div className='lg:w-[75%]  w-full lg:order-none order-2'>
           <div className='min-h-[38.5rem]'>
-            {/* <RecentEpisodes /> */}
+            <RecentEpisodes />
+          </div>
+          <div className='min-h-[38.5rem]'>
             <Popular />
           </div>
 

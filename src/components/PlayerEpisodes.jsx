@@ -96,7 +96,7 @@ const PlayerEpisodes = ({ animeInfo, id, episodes }) => {
               ?.includes(filterId(episode.id))
 
             return (
-              <Link to={`/play/${id}${episode?.id}`} key={episode.id}>
+              <Link to={`/play/${id}/${episode?.id}`} key={episode.id}>
                 <div
                   className={` line-clamp-1 rounded  p-1 ${
                     ep === filterId(episode?.id)

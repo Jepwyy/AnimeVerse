@@ -24,9 +24,12 @@ const RecentEpisodes = () => {
       return response.data
     }
   )
+  if (isError) {
+    return <></>
+  }
 
   return (
-    <div className=''>
+    <div className='min-h-[38.5rem]'>
       <div className='flex items-center justify-between my-2'>
         <div className='text-[#dddddd] font-semibold lg:text-2xl text-base'>
           Recently Updated

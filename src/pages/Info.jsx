@@ -5,6 +5,7 @@ import axios from '../api/api'
 import { useAnimeInfo } from '../utils/useAnimeInfo'
 import { formatPopularity, formatRate } from '../utils/useFormats'
 import { IoPlaySharp, IoPlayOutline } from 'react-icons/io5'
+import { toast } from 'react-toastify'
 import Loader from '../components/Loader'
 const Info = () => {
   const navigate = useNavigate()
@@ -31,7 +32,11 @@ const Info = () => {
     return <Loader />
   }
   if (isError) {
-    refetch
+    navigate('/')
+    toast.error("Can't get data !", {
+      position: 'top-center',
+      toastId: 'info error',
+    })
   }
 
   const handleLatest = () => {
@@ -49,7 +54,6 @@ const Info = () => {
       navigate(`/play/${id}${ep?.id}`)
     }
   }
-  console.log(animeInfo)
 
   return (
     <div className='text-white pb-20'>

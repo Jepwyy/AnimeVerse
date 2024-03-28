@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef } from 'react'
 import PlayerEpisodes from '../components/PlayerEpisodes'
 import { useQuery } from 'react-query'
 import { useParams, useNavigate } from 'react-router-dom'
-import axios from '../api/api'
+
 import { useAnimeInfo } from '../utils/useAnimeInfo'
 import { formatTime } from '../utils/useFormats'
 import { BiSolidBell } from 'react-icons/bi'
 import Recommendation from '../components/Recommendation'
 import Relations from '../components/Relations'
 import Loader from '../components/Loader'
+import axios from 'axios'
 
 const Player = () => {
   const { animeInfo, fetchAnimeInfo } = useAnimeInfo((state) => state)
@@ -20,14 +21,20 @@ const Player = () => {
     fetchAnimeInfo(id)
   }, [id])
 
-  const { data, isError, isLoading } = useQuery(['recentEp', ep], async () => {
-    const response = await axios.get(`/stream/${ep}`)
-    return response.data.plyr.main
-  })
+  const { data, isError, isLoading, error } = useQuery(
+    ['recentEp', ep],
+    async () => {
+      const response = await axios.get(
+        `https://api.amvstr.me/api/v2/stream/${ep}`
+      )
+      return response.data.plyr.main
+    }
+  )
 
   // console.log(data)
 
   if (isError) {
+    console.log(error)
     return <div>Error occurred while fetching data.</div>
   }
 
